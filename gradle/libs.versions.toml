@@ -1,0 +1,79 @@
+[versions]
+compileSdk = "34"
+minSdk = "28"
+targetSdk = "34"
+
+kotlin = "1.9.24"
+compose = "1.6.10-rc03"
+compose-compiler = "1.5.11"
+essenty = "2.0.0"
+agp = "8.2.2"
+androidx-activityCompose = "1.9.0"
+androidx-uiTest = "1.6.7"
+decompose = "3.0.0"
+composeImageLoader = "1.7.8"
+napier = "2.7.1"
+kotlinx-coroutines = "1.8.1"
+ktor = "2.3.9"
+kotlinx-serialization = "1.6.3"
+kotlinx-datetime = "0.5.0"
+koin = "3.5.6"
+datastore = "1.1.1"
+
+[libraries]
+
+
+# Compose libraries
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
+compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose" }
+androidx-compose-bom = "androidx.compose:compose-bom:2024.05.00"
+
+androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-testManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-uiTest" }
+androidx-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-uiTest" }
+
+decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
+decompose-compose = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "decompose" }
+essenty = { module = "com.arkivanov.essenty:lifecycle", version.ref = "essenty" }
+
+composeImageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "composeImageLoader" }
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
+
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+
+ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+
+#datastore
+datastore-core = { module = "androidx.datastore:datastore-preferences-core", version.ref="datastore" }
+datastore = { module = "androidx.datastore:datastore-preferences", version.ref="datastore" }
+
+
+# Gradle plugins
+compose-gradle-plugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose" }
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
+[plugins]
+
+multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+compose-main = { id = "org.jetbrains.compose", version.ref = "compose" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+# Convention app
+eetk-application = { id = "eetk.application", version = "unspecified" }
+eetk-compose = { id = "eetk.compose", version = "unspecified" }
+eetk-compose-multiplatform = { id = "eetk.compose-multiplatform", version = "unspecified" }
+eetk-kmplibrary = { id = "eetk.kmplibrary", version = "unspecified" }
+eetk-library = { id = "eetk.library", version = "unspecified" }
