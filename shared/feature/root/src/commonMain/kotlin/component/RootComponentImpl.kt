@@ -8,7 +8,7 @@ import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.value.Value
 import kotlinx.serialization.Serializable
 import org.koin.core.component.KoinComponent
-import ru.eetk.launch.component.buildLaunchComponent
+import ru.eetk.launch.root.component.buildLaunchComponent
 import ru.eetk.mainflow.component.MainFlowComponent
 import ru.eetk.mainflow.component.buildMainFlowComponent
 

@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.eetk.feature.launch.presentation"
+    namespace = "ru.eetk.feature.schedule.presentation"
 }
 
 kotlin {
@@ -17,10 +17,7 @@ kotlin {
 
     sourceSets {
         commonDependencies {
-            implementation(projects.shared.feature.launch.domain)
-
             implementation(libs.decompose)
-            implementation(libs.decompose.compose)
         }
     }
 }

@@ -2,7 +2,7 @@ package component
 
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
-import ru.eetk.launch.component.LaunchComponent
+import ru.eetk.launch.root.component.LaunchComponent
 import ru.eetk.mainflow.component.MainFlowComponent
 
 interface RootComponent {
