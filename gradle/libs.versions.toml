@@ -3,8 +3,8 @@ compileSdk = "34"
 minSdk = "28"
 targetSdk = "34"
 
-kotlin = "1.9.24"
-compose = "1.6.10-rc03"
+kotlin = "2.0.0"
+compose = "1.6.10"
 compose-compiler = "1.5.11"
 essenty = "2.0.0"
 agp = "8.2.2"
@@ -19,6 +19,7 @@ kotlinx-serialization = "1.6.3"
 kotlinx-datetime = "0.5.0"
 koin = "3.5.6"
 datastore = "1.1.1"
+mvikotlin = "4.0.0"
 
 [libraries]
 
@@ -29,6 +30,11 @@ compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", v
 compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose" }
 compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose" }
 androidx-compose-bom = "androidx.compose:compose-bom:2024.05.00"
+
+# MVIKotlin
+mvikotlin = { module = "com.arkivanov.mvikotlin:mvikotlin", version.ref = "mvikotlin" }
+mvikotlin-main = { module = "com.arkivanov.mvikotlin:mvikotlin-main", version.ref = "mvikotlin" }
+mvikotlin-extensions = { module = "com.arkivanov.mvikotlin:mvikotlin-extensions-coroutines", version.ref = "mvikotlin" }
 
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-testManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-uiTest" }
@@ -50,10 +56,12 @@ ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "kto
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
 
 #datastore
-datastore-core = { module = "androidx.datastore:datastore-preferences-core", version.ref="datastore" }
+datastore-core = { module = "androidx.datastore:datastore", version.ref="datastore" }
 datastore = { module = "androidx.datastore:datastore-preferences", version.ref="datastore" }
 
 
@@ -65,7 +73,7 @@ kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", v
 [plugins]
 
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-compose-main = { id = "org.jetbrains.compose", version.ref = "compose" }
+compose-main = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

@@ -19,10 +19,13 @@ kotlin {
         commonDependencies {
             implementation(projects.shared.feature.launch.presentation)
             implementation(projects.shared.feature.mainflow.root)
+            implementation(projects.shared.persistent)
+            implementation(projects.shared.libraries.coroutines)
 
             implementation(libs.decompose)
             implementation(libs.decompose.compose)
             implementation(libs.koin.core)
+            implementation(libs.kotlinx.coroutines.core)
         }
     }
 }

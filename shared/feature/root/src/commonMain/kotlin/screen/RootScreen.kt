@@ -20,13 +20,11 @@ fun RootScreen(
     modifier: Modifier = Modifier
 ) = MaterialTheme {
     Surface {
-        val stack by component.childStack.subscribeAsState()
-
         Column(
             modifier = Modifier
         ) {
             Children(
-                stack = stack,
+                stack = component.childStack,
                 modifier = modifier,
                 animation = stackAnimation(fade())
             ) {

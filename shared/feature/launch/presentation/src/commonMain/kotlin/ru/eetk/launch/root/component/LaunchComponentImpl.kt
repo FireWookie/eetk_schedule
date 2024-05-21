@@ -5,10 +5,12 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.push
-import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.value.Value
 import kotlinx.serialization.Serializable
 import models.BranchUI
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
+import org.koin.core.component.inject
 import ru.eetk.launch.branch.component.buildSelectBranchComponent
 import ru.eetk.launch.course.component.buildSelectCourseComponent
 
@@ -23,7 +25,7 @@ fun buildLaunchComponent(
 internal class LaunchComponentImpl(
     componentContext: ComponentContext,
     private val onOpenMainFlow: () -> Unit
-) : LaunchComponent, ComponentContext by componentContext {
+) : LaunchComponent, ComponentContext by componentContext, KoinComponent {
 
     private val navigation = StackNavigation<Config>()
 

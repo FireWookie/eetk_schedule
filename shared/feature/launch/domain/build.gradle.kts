@@ -16,7 +16,7 @@ kotlin {
 
     sourceSets {
         commonDependencies {
-
+            implementation(libs.kotlinx.serialization.json)
         }
     }
 }

@@ -1,20 +1,35 @@
 package component
 
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.value.Value
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
+import org.koin.core.component.inject
+import ru.eetk.coroutines.coroutineScope
+import ru.eetk.coroutines.reLaunch
+import ru.eetk.datastore.edit
 import ru.eetk.launch.root.component.buildLaunchComponent
 import ru.eetk.mainflow.component.MainFlowComponent
 import ru.eetk.mainflow.component.buildMainFlowComponent
+import ru.eetk.persistent.launch.completeLaunch
+import ru.eetk.persistent.launch.showLaunch
 
 class RootComponentImpl(
     componentContext: ComponentContext
 ) : RootComponent, ComponentContext by componentContext, KoinComponent {
+
+    private val dataStore: DataStore<Preferences> by inject()
+    private val coroutineScope = coroutineScope()
 
     private val navigation = StackNavigation<Config>()
 
@@ -27,6 +42,14 @@ class RootComponentImpl(
             serializer = Config.serializer()
         )
 
+    init {
+        coroutineScope.launch {
+            if (!dataStore.data.first().showLaunch) {
+                navigation.replaceAll(Config.MainFlow)
+            }
+        }
+    }
+
     private fun processChild(
         config: Config,
         componentContext: ComponentContext
@@ -34,7 +57,13 @@ class RootComponentImpl(
         is Config.Launch -> RootComponent.Child.Launch(
             component = buildLaunchComponent(
                 componentContext = componentContext,
-                onOpenMainFlow = { navigation.replaceAll(Config.MainFlow) }
+                onOpenMainFlow = {
+                    coroutineScope.launch {
+                        dataStore.edit {
+                            completeLaunch()
+                        }
+                    }
+                }
             )
         )
         is Config.MainFlow -> RootComponent.Child.MainFlow(

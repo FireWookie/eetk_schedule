@@ -17,8 +17,6 @@ kotlin {
     sourceSets {
         commonDependencies {
             api(libs.datastore.core)
-        }
-        androidDependencies {
             api(libs.datastore)
         }
     }

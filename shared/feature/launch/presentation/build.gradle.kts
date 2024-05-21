@@ -21,6 +21,7 @@ kotlin {
 
             implementation(libs.decompose)
             implementation(libs.decompose.compose)
+            implementation(libs.koin.core)
         }
     }
 }

@@ -10,6 +10,8 @@ import androidx.activity.enableEdgeToEdge
 import com.arkivanov.decompose.defaultComponentContext
 import component.RootComponent
 import component.RootComponentImpl
+import org.koin.android.ext.koin.androidContext
+import ru.eetk.di.KoinInjector
 import screen.RootScreen
 
 class AndroidApp : Application() {
@@ -20,6 +22,7 @@ class AndroidApp : Application() {
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
+        KoinInjector.koinApp.androidContext(this)
     }
 }
 

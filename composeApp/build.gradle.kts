@@ -1,4 +1,3 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
 import com.android.build.api.dsl.ManagedVirtualDevice
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -43,6 +42,8 @@ kotlin {
             isStatic = true
             export(projects.shared.compose.theme)
             export(projects.shared.feature.root)
+            export(projects.shared.coreDi)
+
             export(libs.decompose)
             export(libs.essenty)
         }
@@ -55,11 +56,10 @@ kotlin {
             }
         }
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
+            implementation(libs.compose.runtime)
+            implementation(libs.compose.foundation)
+            implementation(libs.compose.material3)
+//            implementation(compose.components.resources)
             implementation(libs.decompose)
             implementation(libs.decompose.compose)
             implementation(libs.composeImageLoader)
@@ -75,17 +75,15 @@ kotlin {
             implementation(libs.essenty)
             implementation(projects.shared.compose.theme)
             implementation(projects.shared.feature.root)
+            implementation(projects.shared.coreDi)
         }
 
         commonTest.dependencies {
             implementation(kotlin("test"))
-            @OptIn(ExperimentalComposeLibrary::class)
-            implementation(compose.uiTest)
             implementation(libs.kotlinx.coroutines.test)
         }
 
         androidMain.dependencies {
-            implementation(compose.uiTooling)
             implementation(libs.androidx.activityCompose)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.ktor.client.okhttp)
@@ -94,9 +92,11 @@ kotlin {
         iosMain.dependencies {
             api(projects.shared.compose.theme)
             api(projects.shared.feature.root)
+            api(projects.shared.coreDi)
 
             api(libs.decompose)
             api(libs.essenty)
+
         }
 
     }

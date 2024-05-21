@@ -41,3 +41,14 @@ include(
     ":shared:feature:mainflow:schedule:presentation"
 )
 include(":shared:feature:mainflow:root")
+include(
+    ":shared:feature:mainflow:review:data",
+    ":shared:feature:mainflow:review:domain",
+    ":shared:feature:mainflow:review:presentation"
+)
+include(
+    ":shared:feature:mainflow:settings:data",
+    ":shared:feature:mainflow:settings:domain",
+    ":shared:feature:mainflow:settings:presentation"
+)
+include(":shared:persistent")
