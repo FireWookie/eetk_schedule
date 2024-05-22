@@ -4,8 +4,10 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.value.Value
+import com.arkivanov.essenty.backhandler.BackHandlerOwner
 import kotlinx.serialization.Serializable
 import models.BranchUI
 import org.koin.core.component.KoinComponent
@@ -25,7 +27,7 @@ fun buildLaunchComponent(
 internal class LaunchComponentImpl(
     componentContext: ComponentContext,
     private val onOpenMainFlow: () -> Unit
-) : LaunchComponent, ComponentContext by componentContext, KoinComponent {
+) : LaunchComponent, ComponentContext by componentContext, KoinComponent, BackHandlerOwner {
 
     private val navigation = StackNavigation<Config>()
 
@@ -59,6 +61,10 @@ internal class LaunchComponentImpl(
                 onOpenMainFlow = onOpenMainFlow,
             )
         )
+    }
+
+    override fun onBackClicked() {
+        navigation.pop()
     }
 
 
