@@ -17,3 +17,6 @@ internal val Project.libraryPluginId
 
 internal val Project.composePluginId
     get() = libs.plugins.compose.main.get().pluginId
+
+internal val Project.composeMainPluginId
+    get() = libs.plugins.compose.jb.get().pluginId

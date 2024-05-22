@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 fun App() {
     
     Text("Ios Work")
+
 }
 
 internal expect fun openUrl(url: String?)

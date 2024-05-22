@@ -18,6 +18,7 @@ kotlin {
     sourceSets {
         commonDependencies {
             implementation(libs.decompose)
+            implementation(projects.shared.compose.resources)
 
         }
     }
