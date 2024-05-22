@@ -1,8 +1,7 @@
 package ru.eetk.launch.root.screen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -22,22 +21,25 @@ import ru.eetk.launch.root.component.LaunchComponent
 @OptIn(ExperimentalDecomposeApi::class)
 @Composable
 fun LaunchScreen(component: LaunchComponent) {
-    val stack by component.childStack.subscribeAsState()
+    Scaffold { insetPadding ->
+        val stack by component.childStack.subscribeAsState()
+        Children(
+            stack = stack,
+            modifier = Modifier.padding(insetPadding),
+            animation = backAnimation(
+              backHandler = component.backHandler,
+              onBack = component::onBackClicked
+            )
+        ) { config ->
+            when (val child = config.instance) {
+                is LaunchComponent.Child.Branch -> SelectBranchScreen(
+                    child.component
+                )
 
-    Children(
-        stack = stack,
-        animation = backAnimation(
-            backHandler = component.backHandler,
-            onBack = component::onBackClicked
-        )
-    ) { config ->
-        when(val child = config.instance) {
-            is LaunchComponent.Child.Branch -> SelectBranchScreen(
-                component = child.component
-            )
-            is LaunchComponent.Child.Course -> SelectCourseScreen(
-                component = child.component
-            )
+                is LaunchComponent.Child.Course -> SelectCourseScreen(
+                    child.component
+                )
+            }
         }
     }
 }
