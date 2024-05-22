@@ -21,6 +21,9 @@ kotlin {
             implementation(projects.shared.feature.mainflow.root)
             implementation(projects.shared.persistent)
             implementation(projects.shared.libraries.coroutines)
+            
+//            Import Theme
+            implementation(projects.shared.compose.theme)
 
             implementation(libs.decompose)
             implementation(libs.decompose.compose)
