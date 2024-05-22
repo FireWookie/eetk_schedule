@@ -19,6 +19,7 @@ kotlin {
         commonDependencies {
             implementation(projects.shared.feature.launch.domain)
 
+            implementation(projects.shared.compose.animation)
             implementation(projects.shared.compose.components)
             
             implementation(libs.decompose)

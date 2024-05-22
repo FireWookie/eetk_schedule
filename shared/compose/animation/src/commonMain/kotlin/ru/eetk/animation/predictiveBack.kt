@@ -1,4 +1,4 @@
-package ru.eetk.launch.root.animation
+package ru.eetk.animation
 
 import com.arkivanov.decompose.extensions.compose.stack.animation.StackAnimation
 import com.arkivanov.essenty.backhandler.BackHandler

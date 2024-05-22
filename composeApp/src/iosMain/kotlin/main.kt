@@ -15,10 +15,11 @@ import screen.RootScreen
 
 @OptIn(ExperimentalDecomposeApi::class)
 fun MainViewController(
-    component: RootComponent
+    component: RootComponent,
+    backDispatcher: BackDispatcher
 ): UIViewController = ComposeUIViewController {
     PredictiveBackGestureOverlay(
-        backDispatcher = BackDispatcher(),
+        backDispatcher = backDispatcher,
         backIcon = { progress, _ ->
             PredictiveBackGestureIcon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,

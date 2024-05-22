@@ -1,4 +1,4 @@
-package ru.eetk.launch.root.animation
+package ru.eetk.animation
 
 import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.tween
@@ -28,11 +28,9 @@ actual fun <C : Any, T : Any> backAnimation(
             predictiveBackAnimatable(
                 initialBackEvent = initialBackEvent,
                 exitModifier = { progress, _ ->
-                    println(progress)
                     Modifier.slideExitModifier(progress = progress)
                 },
                 enterModifier = { progress, _ ->
-                    println(progress)
                     Modifier.slideEnterModifier(progress = progress)
                 },
             )

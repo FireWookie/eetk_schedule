@@ -45,7 +45,9 @@ kotlin {
             export(projects.shared.coreDi)
 
             export(libs.decompose)
+            export(libs.decompose.compose)
             export(libs.essenty)
+            export(libs.essenty.backHandler)
         }
     }
 
@@ -60,7 +62,6 @@ kotlin {
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
 //            implementation(compose.components.resources)
-            implementation(libs.decompose)
             implementation(libs.decompose.compose)
             implementation(libs.composeImageLoader)
             implementation(libs.napier)
@@ -73,6 +74,7 @@ kotlin {
 
             implementation(libs.decompose)
             implementation(libs.essenty)
+            implementation(libs.essenty.backHandler)
             implementation(projects.shared.compose.theme)
             implementation(projects.shared.feature.root)
             implementation(projects.shared.coreDi)
@@ -95,7 +97,9 @@ kotlin {
             api(projects.shared.coreDi)
 
             api(libs.decompose)
+            api(libs.decompose.compose)
             api(libs.essenty)
+            api(libs.essenty.backHandler)
 
         }
 

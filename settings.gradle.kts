@@ -29,6 +29,7 @@ include(
 )
 include(":shared:compose:theme")
 include(":shared:compose:components")
+include(":shared:compose:animation")
 include(
     ":shared:feature:launch:data",
     ":shared:feature:launch:domain",

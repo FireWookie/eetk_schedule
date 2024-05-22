@@ -15,7 +15,10 @@ struct iosApp: App {
     var body: some Scene {
 
         WindowGroup {
-            ComposeView(appDelegate.root).ignoresSafeArea(.all)
+            ComposeView(
+                appDelegate.root,
+                backDispatcher: appDelegate.backDispatcher
+            ).ignoresSafeArea(.all)
         }
     }
 }

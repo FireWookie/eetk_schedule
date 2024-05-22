@@ -12,7 +12,16 @@ import ComposeApp
 
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    let root: RootComponent = RootComponentImpl(componentContext: DefaultComponentContext(lifecycle: ApplicationLifecycle()))
+    var backDispatcher: BackDispatcher = BackDispatcherKt.BackDispatcher()
+
+    lazy var root: RootComponent = RootComponentImpl(
+        componentContext: DefaultComponentContext(
+            lifecycle: ApplicationLifecycle(),
+            stateKeeper: nil,
+            instanceKeeper: nil,
+            backHandler: backDispatcher
+        )
+    )
 
     func application(
             _ application: UIApplication,
@@ -25,13 +34,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 struct ComposeView: UIViewControllerRepresentable {
     private var component: RootComponent
+    private var backDispatcher: BackDispatcher
     
-    init(_ component: RootComponent) {
+    init(_ component: RootComponent, backDispatcher: BackDispatcher) {
         self.component = component
+        self.backDispatcher = backDispatcher
     }
 
     func makeUIViewController(context: Context) -> UIViewController {
-        MainKt.MainViewController(component: component)
+        MainKt.MainViewController(component: component, backDispatcher: self.backDispatcher)
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
