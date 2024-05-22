@@ -8,6 +8,7 @@ fun KotlinMultiplatformExtension.iosTarget() {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
+    jvmToolchain(17)
 }
 
 fun KotlinMultiplatformExtension.setupIosStaticFramework(

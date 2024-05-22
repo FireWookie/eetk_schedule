@@ -23,6 +23,7 @@ class AndroidApp : Application() {
         super.onCreate()
         INSTANCE = this
         KoinInjector.koinApp.androidContext(this)
+//        KoinInjector.doInitKoin()
     }
 }
 

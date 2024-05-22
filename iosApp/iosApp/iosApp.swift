@@ -6,10 +6,19 @@ import ComposeApp
 struct iosApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self)
     var appDelegate: AppDelegate
-    
+
+    init() {
+
+        KoinInjector.shared.koinApp
+    }
+
     var body: some Scene {
+
         WindowGroup {
-            ComposeView(appDelegate.root).ignoresSafeArea(.all)
+            ComposeView(
+                appDelegate.root,
+                backDispatcher: appDelegate.backDispatcher
+            ).ignoresSafeArea(.all)
         }
     }
 }

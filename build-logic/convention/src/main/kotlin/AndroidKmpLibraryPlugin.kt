@@ -21,13 +21,12 @@ class AndroidKmpLibraryPlugin : Plugin<Project> {
         apply(plugin = kotlinMultiplatformPluginId)
 
         kmmExtension {
+            jvmToolchain(17)
             targets.all {
                 compilations.all {
                     kotlinOptions {
-//                        jvmToolchain(17)
-                        freeCompilerArgs += "-Xcontext-receivers"
-                        freeCompilerArgs += "-Xexpect-actual-classes"
-                        languageVersion = KotlinVersion.KOTLIN_1_9.version
+                        freeCompilerArgs += ("-Xexpect-actual-classes")
+                        freeCompilerArgs += ("-Xcontext-receivers")
                     }
                 }
             }
