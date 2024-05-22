@@ -2,10 +2,12 @@ package ru.eetk.launch.course.component
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
+import com.arkivanov.mvikotlin.core.store.StoreFactory
 import models.BranchUI
 import org.koin.core.component.KoinComponent
 import ru.eetk.launch.course.store.CourseStore
 import org.koin.core.component.get
+import ru.eetk.launch.course.store.CourseStoreFactory
 
 fun buildSelectCourseComponent(
     componentContext: ComponentContext,
@@ -14,7 +16,7 @@ fun buildSelectCourseComponent(
 ): SelectCourseComponent = SelectCourseComponentImpl(
     componentContext = componentContext,
     branchUI = branchUI,
-    onOpenMainFlow
+    onOpenMainFlow = onOpenMainFlow
 )
 
 internal class SelectCourseComponentImpl(

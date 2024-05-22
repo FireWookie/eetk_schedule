@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        
+        {
+            "name": "composeApp (1)",
+            "type": "android-app",
+            "workingDir": "$PROJECT_DIR$",
+            "allowParallelRun": true,
+            "module": "EETK_APP.composeApp.main"
+        }
+    ]
+}

@@ -20,6 +20,9 @@ kotlin {
             api(libs.koin.core)
 
             implementation(projects.shared.libraries.datastore)
+            implementation(projects.shared.feature.launch.presentation)
+            implementation(libs.mvikotlin)
+            implementation(libs.mvikotlin.main)
         }
         androidDependencies {
             api(libs.koin.androidx.compose)
