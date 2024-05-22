@@ -8,7 +8,6 @@ dependencies {
     compileOnly(libs.android.gradle.plugin)
     compileOnly(libs.kotlin.gradle.plugin)
     implementation(libs.compose.gradle.plugin)
-
     compileOnly(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }
 
