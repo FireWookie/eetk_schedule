@@ -1,10 +1,11 @@
 package ru.eetk.launch
 
+import com.arkivanov.mvikotlin.core.store.StoreFactory
 import org.koin.dsl.module
 import ru.eetk.launch.course.store.CourseStoreFactory
 
 val launchPresentationModule = module {
-    single {
+    factory {
         CourseStoreFactory(
             storeFactory = get(),
         ).create()

@@ -4,6 +4,7 @@ import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.FaultyDecomposeApi
@@ -26,7 +27,7 @@ fun RootScreen(
 ) = EETKTheme() {
 
     Column(
-        modifier = Modifier
+        modifier = Modifier.systemBarsPadding()
     ) {
         Children(
             stack = component.childStack,

@@ -13,6 +13,14 @@ import ComposeApp
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     let root: RootComponent = RootComponentImpl(componentContext: DefaultComponentContext(lifecycle: ApplicationLifecycle()))
+
+    func application(
+            _ application: UIApplication,
+            didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
+    ) -> Bool {
+        return true
+    }
+
 }
 
 struct ComposeView: UIViewControllerRepresentable {

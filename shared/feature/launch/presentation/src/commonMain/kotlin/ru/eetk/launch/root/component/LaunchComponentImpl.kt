@@ -56,7 +56,7 @@ internal class LaunchComponentImpl(
             buildSelectCourseComponent(
                 componentContext = componentContext,
                 branchUI = config.branch,
-                onOpenMainFlow = onOpenMainFlow
+                onOpenMainFlow = onOpenMainFlow,
             )
         )
     }

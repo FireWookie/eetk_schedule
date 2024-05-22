@@ -13,6 +13,7 @@ android {
 }
 
 kotlin {
+    jvmToolchain(17)
     androidTarget()
     iosTarget()
 
