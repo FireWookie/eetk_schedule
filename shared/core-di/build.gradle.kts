@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.eetk.core-di"
+    namespace = "ru.eetk.core.di"
 }
 
 kotlin {

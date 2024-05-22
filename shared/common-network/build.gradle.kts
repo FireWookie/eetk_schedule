@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.eetk.common-network"
+    namespace = "ru.eetk.common.network"
 }
 
 kotlin {
