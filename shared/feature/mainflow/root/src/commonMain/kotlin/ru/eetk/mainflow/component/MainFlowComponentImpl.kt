@@ -8,15 +8,36 @@ import com.arkivanov.decompose.router.pages.PagesNavigation
 import com.arkivanov.decompose.router.pages.childPages
 import com.arkivanov.decompose.router.pages.select
 import com.arkivanov.decompose.value.Value
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import ru.eetk.coroutines.coroutineScope
+import ru.eetk.mainflow.component.utils.Screen
+import ru.eetk.mainflow.component.utils.Screen.*
+import ru.eetk.review.root.component.buildReviewRootComponent
+import ru.eetk.schedule.component.buildScheduleComponent
+import ru.eetk.settings.root.component.buildSettingsRootComponent
+import ru.eetk.settings.root.models.SelectedTab
 
+
+/**
+ * Функция для возвращения internal класса MainFlowComponentImpl
+ * */
 fun buildMainFlowComponent(
     componentContext: ComponentContext
 ): MainFlowComponent = MainFlowComponentImpl(
     componentContext = componentContext
 )
 
+
+/**
+ * Класс MainFlowComponentImpl представляет собой компонент основного flow, в нем происходит навигация по BottomNavigation
+ * @param componentContext встроенный контекст decompose функции
+ * changeTab представляет собой метод для навигации между экранами в BottomNavigation
+ * eventFlow MutableSharedFlow для уведомления feature модулей о том что BottomNavigation был нажат еще раз
+ * чтобы они изменили свой экран на root
+ * */
 @OptIn(ExperimentalDecomposeApi::class)
 internal class MainFlowComponentImpl(
     private val componentContext: ComponentContext,
@@ -24,11 +45,22 @@ internal class MainFlowComponentImpl(
 
     private val navigation = PagesNavigation<MainTabNavigation>()
 
+    override val eventFlow: MutableSharedFlow<SelectedTab> = MutableSharedFlow(1) // TODO (provide by DI)
+
     private val coroutineScope = coroutineScope()
 
-    override fun changeTab(index: Int) {
+    override fun changeTab(index: Int) { // TODO (refactoring func)
         coroutineScope.launch {
-            navigation.select(index)
+            if (pages.value.selectedIndex == index) {
+                println(pages.value.selectedIndex)
+                when(pages.value.selectedIndex) {
+                     Settings.index -> {
+                         eventFlow.emit(SelectedTab.SettingsTab)
+                     }
+                }
+            } else {
+                navigation.select(index)
+            }
         }
     }
 
@@ -57,15 +89,18 @@ internal class MainFlowComponentImpl(
     ): MainFlowComponent.MainTabs {
         return when (tabs) {
             MainTabNavigation.Schedule -> MainFlowComponent.MainTabs.Schedule(
-                Unit
+                buildScheduleComponent(componentContext = componentContext)
             )
 
             MainTabNavigation.Review -> MainFlowComponent.MainTabs.Review(
-                Unit
+                buildReviewRootComponent(componentContext = componentContext)
             )
 
             MainTabNavigation.Settings -> MainFlowComponent.MainTabs.Settings(
-                Unit
+                buildSettingsRootComponent(
+                    componentContext = componentContext,
+                    eventFlow = eventFlow
+                )
             )
         }
     }

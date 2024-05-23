@@ -13,10 +13,6 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        register("eetk.library") {
-            id = "eetk.library"
-            implementationClass = "AndroidLibraryPlugin"
-        }
         register("eetk.kmplibrary") {
             id = "eetk.kmplibrary"
             implementationClass = "AndroidKmpLibraryPlugin"
@@ -24,19 +20,6 @@ gradlePlugin {
         register("eetk.compose-multiplatform") {
             id = "eetk.compose-multiplatform"
             implementationClass = "ComposeMultiplatformPlugin"
-        }
-        register("eetk.compose") {
-            id = "eetk.compose"
-            implementationClass = "AndroidComposePlugin"
-        }
-        register("eetk.application") {
-            id = "eetk.application"
-            implementationClass = "AndroidApplicationPlugin"
-        }
-
-        register("eetk.compose.main") {
-            id = "eetk.compose.main"
-            implementationClass = "ComposePlugin"
         }
     }
 }

@@ -51,6 +51,6 @@ private fun cardContent(text: String) {
                 text = text,
                 style = MaterialTheme.typography.titleMedium)
         }
-        )
+    )
 
 }

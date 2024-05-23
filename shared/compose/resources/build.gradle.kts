@@ -22,7 +22,7 @@ kotlin {
             }
         }
         commonDependencies {
-            implementation(libs.compose.resources)
+            api(libs.compose.resources)
         }
     }
 }
