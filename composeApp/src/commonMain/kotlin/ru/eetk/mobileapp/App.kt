@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 @Composable
 fun App() {
     
-    Text("Ios Work")
+//    Text(stringResources)
 
 }
 

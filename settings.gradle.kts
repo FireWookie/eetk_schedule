@@ -20,12 +20,14 @@ dependencyResolutionManagement {
 
 include(":composeApp")
 
-include(":shared:common-network")
+include(":shared:common-network:api")
+include(":shared:common-network:impl")
 include(":shared:umbrella-ios")
 include(":shared:core-di")
 include(
     ":shared:libraries:coroutines",
-    ":shared:libraries:datastore"
+    ":shared:libraries:datastore",
+    ":shared:libraries:flow"
 )
 include(":shared:compose:theme")
 include(":shared:compose:components")

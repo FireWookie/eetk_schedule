@@ -83,8 +83,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 # Convention app
-eetk-application = { id = "eetk.application", version = "unspecified" }
-eetk-compose = { id = "eetk.compose", version = "unspecified" }
 eetk-compose-multiplatform = { id = "eetk.compose-multiplatform", version = "unspecified" }
 eetk-kmplibrary = { id = "eetk.kmplibrary", version = "unspecified" }
-eetk-library = { id = "eetk.library", version = "unspecified" }

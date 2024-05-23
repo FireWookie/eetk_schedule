@@ -44,6 +44,9 @@ class RootComponentImpl(
 
     init {
         coroutineScope.launch {
+            dataStore.edit {
+                completeLaunch()
+            }
             if (!dataStore.data.first().showLaunch) {
                 navigation.replaceAll(Config.MainFlow)
             } else {

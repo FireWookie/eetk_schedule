@@ -101,7 +101,7 @@ val LocalThemeIsDark = compositionLocalOf { mutableStateOf(true) }
 @Composable
 fun EETKTheme(
     dynamicTheme: Boolean = false,
-    content: @Composable() () -> Unit
+    content: @Composable () -> Unit
 ) {
 
     val systemIsDark = isSystemInDarkTheme()

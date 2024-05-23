@@ -4,4 +4,27 @@
     <string name="run">Run</string>
     <string name="stop">Stop</string>
     <string name="theme">Theme</string>
+
+    <string name="notification">Уведомления</string>
+    <string name="design">Оформление</string>
+    <string name="settings_profile">Настройки профиля</string>
+    <string name="about_app">О приложении</string>
+
+    <string name="eetk_review">ЕЭТК Отзывы</string>
+    <string name="auth_need">Чтобы продолжить необходимо войти в аккаунт</string>
+    <string name="subject">Дисциплина</string>
+    <string name="work_years">Стаж работы</string>
+    <string name="auth">Авторизоваться</string>
+
+    <string name="notification_by_schedule">Уведомления о расписании</string>
+    <string name="notification_by_changes">Уведомления об изменениях</string>
+
+    <string name="dark_theme">Темная тема</string>
+    <string name="dynamic_colors">Динамические цвета</string>
+
+    <string name="change_password">Изменить пароль</string>
+
+    <string name="schedule">Расписание</string>
+    <string name="review">Отзывы</string>
+    <string name="settings">Настройки</string>
 </resources>
