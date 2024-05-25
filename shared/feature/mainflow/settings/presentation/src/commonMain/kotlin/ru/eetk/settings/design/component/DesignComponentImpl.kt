@@ -4,12 +4,15 @@ import com.arkivanov.decompose.ComponentContext
 import org.koin.core.component.KoinComponent
 
 internal fun buildDesignComponent(
-    componentContext: ComponentContext
+    componentContext: ComponentContext,
+    backClick: () -> Unit
 ): DesignComponent = DesignComponentImpl(
-    componentContext = componentContext
+    componentContext = componentContext,
+    backClick = backClick
 )
 internal class DesignComponentImpl(
-    componentContext: ComponentContext
+    componentContext: ComponentContext,
+    private val backClick: () -> Unit,
 ): DesignComponent, ComponentContext by componentContext, KoinComponent {
-
+    override fun onBackClicked() = backClick()
 }

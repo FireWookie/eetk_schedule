@@ -9,6 +9,8 @@ import com.arkivanov.decompose.extensions.compose.stack.animation.Direction
 import com.arkivanov.decompose.extensions.compose.stack.animation.StackAnimation
 import com.arkivanov.decompose.extensions.compose.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.stack.animation.plus
+import com.arkivanov.decompose.extensions.compose.stack.animation.predictiveback.androidPredictiveBackAnimatable
+import com.arkivanov.decompose.extensions.compose.stack.animation.predictiveback.materialPredictiveBackAnimatable
 import com.arkivanov.decompose.extensions.compose.stack.animation.predictiveback.predictiveBackAnimation
 import com.arkivanov.decompose.extensions.compose.stack.animation.slide
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
@@ -21,6 +23,7 @@ actual fun <C : Any, T : Any> backAnimation(
 ): StackAnimation<C, T> =
     predictiveBackAnimation(
         backHandler = backHandler,
+        selector = { backEvent, _, _ -> androidPredictiveBackAnimatable(backEvent) },
         fallbackAnimation = stackAnimation { _, _, direction ->
             when(direction) {
                 Direction.ENTER_FRONT -> FrontAnim

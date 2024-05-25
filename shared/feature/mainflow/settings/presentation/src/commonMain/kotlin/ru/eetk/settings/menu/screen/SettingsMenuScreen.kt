@@ -1,26 +1,27 @@
 package ru.eetk.settings.menu.screen
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.Palette
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import eetk_app.shared.compose.resources.generated.resources.Res
 import eetk_app.shared.compose.resources.generated.resources.about_app
 import eetk_app.shared.compose.resources.generated.resources.design
 import eetk_app.shared.compose.resources.generated.resources.notification
+import eetk_app.shared.compose.resources.generated.resources.settings
 import eetk_app.shared.compose.resources.generated.resources.settings_profile
 import org.jetbrains.compose.resources.stringResource
 import ru.eetk.components.buttons.PrimaryEETKButton
 import ru.eetk.components.layout.CenteredColumn
-import ru.eetk.resources.EETKPack
-import ru.eetk.resources.eetkpack.Info
-import ru.eetk.resources.eetkpack.Notification
-import ru.eetk.resources.eetkpack.Palette
-import ru.eetk.resources.eetkpack.Person
+import ru.eetk.components.layout.TopappBar
 
 import ru.eetk.settings.menu.component.SettingsMenuComponent
 
@@ -29,31 +30,43 @@ import ru.eetk.settings.menu.component.SettingsMenuComponent
 internal fun SettingsMenuScreen(
     component: SettingsMenuComponent
 ) {
+    Scaffold(
+        topBar = { TopappBar(text = stringResource(Res.string.settings)) },
+        content = { insetPadding -> SettingsMenuContent(component = component, insetPadding = insetPadding) }
+    )
+}
+
+@Composable
+private fun SettingsMenuContent(
+    component: SettingsMenuComponent,
+    insetPadding: PaddingValues,
+    modifier: Modifier = Modifier
+) {
+    val icons = Icons.Outlined
     CenteredColumn(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 10.dp),
+            .padding(insetPadding)
+            .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         PrimaryEETKButton(
             text = stringResource(Res.string.notification),
-            icon = EETKPack.Notification,
+            icon = icons.Notifications,
             onClick = component::onNotificationClick
         )
         PrimaryEETKButton(
             text = stringResource(Res.string.design),
-            icon = EETKPack.Palette,
+            icon = icons.Palette,
             onClick = component::onDesignClick
         )
         PrimaryEETKButton(
             text = stringResource(Res.string.settings_profile),
-            icon = EETKPack.Person,
+            icon = icons.Person,
             onClick = component::onProfileClick
         )
         PrimaryEETKButton(
             text = stringResource(Res.string.about_app),
-            icon = EETKPack.Info,
+            icon = icons.Info,
             onClick = {}
         )
     }

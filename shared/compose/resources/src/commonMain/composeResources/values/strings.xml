@@ -19,7 +19,10 @@
     <string name="notification_by_schedule">Уведомления о расписании</string>
     <string name="notification_by_changes">Уведомления об изменениях</string>
 
-    <string name="dark_theme">Темная тема</string>
+    <string name="dark_theme">Ночная тема</string>
+    <string name="system_theme">Системная</string>
+    <string name="dark_off_theme">Выключена</string>
+    <string name="dark_on_theme">Включена</string>
     <string name="dynamic_colors">Динамические цвета</string>
 
     <string name="change_password">Изменить пароль</string>

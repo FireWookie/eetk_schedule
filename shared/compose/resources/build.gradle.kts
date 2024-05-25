@@ -23,6 +23,8 @@ kotlin {
         }
         commonDependencies {
             api(libs.compose.resources)
+            api(libs.compose.icons.extended)
+
         }
     }
 }

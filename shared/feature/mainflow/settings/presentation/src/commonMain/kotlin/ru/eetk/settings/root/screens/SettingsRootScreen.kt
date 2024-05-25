@@ -21,9 +21,9 @@ fun SettingsRootScreen(
         )
     ) {
         when(val child = it.instance) {
-            is SettingsRootComponent.Child.Design -> DesignScreen(child.component)
             is SettingsRootComponent.Child.Menu -> SettingsMenuScreen(child.component)
             is SettingsRootComponent.Child.Notification -> NotificationScreen(child.component)
+            is SettingsRootComponent.Child.Design -> DesignScreen(child.component)
             is SettingsRootComponent.Child.Profile -> ProfileScreen(child.component)
         }
     }

@@ -33,6 +33,7 @@ class RootComponentImpl(
 
     private val dataStore: DataStore<Preferences> by inject()
     private val coroutineScope = coroutineScope()
+    private val navigation = StackNavigation<Config>()
 
     init {
         runBlocking {
@@ -47,7 +48,7 @@ class RootComponentImpl(
         }
     }
 
-    private val navigation = StackNavigation<Config>()
+
 
     override val childStack: Value<ChildStack<*, RootComponent.Child>> =
         childStack(

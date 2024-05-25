@@ -19,6 +19,7 @@ kotlin {
         commonDependencies {
             implementation(libs.koin.core)
 
+
             implementation(projects.shared.libraries.coroutines)
             implementation(projects.shared.libraries.flow)
 

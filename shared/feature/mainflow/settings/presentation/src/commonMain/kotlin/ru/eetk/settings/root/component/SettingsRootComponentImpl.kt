@@ -15,7 +15,6 @@ import kotlinx.serialization.Serializable
 import models.SelectedTab
 import org.koin.core.component.inject
 import org.koin.core.qualifier.named
-import ru.eetk.coroutines.coroutineScope
 import ru.eetk.libraries.flow.FlowConstants
 import ru.eetk.settings.design.component.buildDesignComponent
 import ru.eetk.settings.menu.component.buildSettingsMenuComponent
@@ -64,7 +63,8 @@ internal class SettingsRootComponentImpl(
     ) = when(config) {
         Config.Design -> SettingsRootComponent.Child.Design(
             buildDesignComponent(
-                componentContext = componentContext
+                componentContext = componentContext,
+                backClick = { navigation.pop() }
             )
         )
         Config.Menu -> SettingsRootComponent.Child.Menu(
@@ -77,12 +77,14 @@ internal class SettingsRootComponentImpl(
         )
         Config.Notification -> SettingsRootComponent.Child.Notification(
             buildNotificationComponent(
-                componentContext = componentContext
+                componentContext = componentContext,
+                backClick = { navigation.pop() }
             )
         )
         Config.Profile -> SettingsRootComponent.Child.Profile(
             buildProfileComponent(
-                componentContext = componentContext
+                componentContext = componentContext,
+                backClick = { navigation.pop() }
             )
         )
     }

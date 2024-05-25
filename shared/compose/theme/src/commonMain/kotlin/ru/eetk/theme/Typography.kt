@@ -1,3 +1,5 @@
+import androidx.compose.material3.Typography
+
 //package ru.eetk.theme
 //
 //package com.example.ui.theme
@@ -31,7 +33,7 @@
 //    )
 //)
 //
-//// Default Material 3 typography values
+// Default Material 3 typography values
 //val baseline = Typography()
 //
 //val AppTypography = Typography(
@@ -49,6 +51,6 @@
 //    bodySmall = baseline.bodySmall.copy(fontFamily = bodyFontFamily),
 //    labelLarge = baseline.labelLarge.copy(fontFamily = bodyFontFamily),
 //    labelMedium = baseline.labelMedium.copy(fontFamily = bodyFontFamily),
-//    labelSmall = baseline.labelSmall.copy(fontFamily = bodyFontFamily),
+//    labelSmall = baseline.labelSmall.copy(fontStyle = ),
 //)
 //

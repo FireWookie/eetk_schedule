@@ -295,7 +295,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
-				DEVELOPMENT_TEAM = T22GJZTJD3;
+				DEVELOPMENT_TEAM = G7SPW6T973;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"${inherited}",
@@ -314,7 +314,7 @@
 					"-framework",
 					ComposeApp,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.eetk.mobileapp.iosApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.eetk.mobileapp;
 				PRODUCT_NAME = EETK_APP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -330,7 +330,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
-				DEVELOPMENT_TEAM = T22GJZTJD3;
+				DEVELOPMENT_TEAM = G7SPW6T973;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"${inherited}",
@@ -349,7 +349,7 @@
 					"-framework",
 					ComposeApp,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.eetk.mobileapp.iosApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.eetk.mobileapp;
 				PRODUCT_NAME = EETK_APP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
