@@ -4,7 +4,7 @@ import ru.eetk.mobileapp.extension.iosTarget
 plugins {
     alias(libs.plugins.eetk.kmplibrary)
     alias(libs.plugins.eetk.compose.multiplatform)
-    alias(libs.plugins.compose.jb)
+//    alias(libs.plugins.compose.jb)
 }
 
 android {

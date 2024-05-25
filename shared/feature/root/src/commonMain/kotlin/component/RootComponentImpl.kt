@@ -9,8 +9,11 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.value.Value
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
@@ -31,20 +34,9 @@ class RootComponentImpl(
     private val dataStore: DataStore<Preferences> by inject()
     private val coroutineScope = coroutineScope()
 
-    private val navigation = StackNavigation<Config>()
-
-    override val childStack: Value<ChildStack<*, RootComponent.Child>> =
-        childStack(
-            source = navigation,
-            initialConfiguration = Config.Launch,
-            handleBackButton = true,
-            childFactory = ::processChild,
-            serializer = Config.serializer()
-        )
-
     init {
-        coroutineScope.launch {
-            dataStore.edit {
+        runBlocking {
+            dataStore.edit { // TODO Remove
                 completeLaunch()
             }
             if (!dataStore.data.first().showLaunch) {
@@ -54,6 +46,17 @@ class RootComponentImpl(
             }
         }
     }
+
+    private val navigation = StackNavigation<Config>()
+
+    override val childStack: Value<ChildStack<*, RootComponent.Child>> =
+        childStack(
+            source = navigation,
+            initialConfiguration = Config.MainFlow,
+            handleBackButton = true,
+            childFactory = ::processChild,
+            serializer = Config.serializer()
+        )
 
     private fun processChild(
         config: Config,

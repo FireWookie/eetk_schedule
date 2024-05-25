@@ -20,6 +20,7 @@ kotlin {
             api(libs.koin.core)
 
             implementation(projects.shared.libraries.datastore)
+            implementation(projects.shared.libraries.flow)
             implementation(projects.shared.feature.launch.presentation)
             implementation(libs.mvikotlin)
             implementation(libs.mvikotlin.main)

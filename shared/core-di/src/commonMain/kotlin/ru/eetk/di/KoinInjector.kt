@@ -1,5 +1,6 @@
 package ru.eetk.di
 
+import ru.eetk.libraries.flow.flowModule
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -12,6 +13,7 @@ object KoinInjector {
             listOf(
                 platformDataStoreModule,
                 launchPresentationModule,
+                storeModule,
                 flowModule
             )
         )

@@ -17,11 +17,11 @@ kotlin {
 
     sourceSets {
         commonDependencies {
-            implementation(libs.decompose)
-            implementation(libs.decompose.compose)
             implementation(libs.koin.core)
 
             implementation(projects.shared.libraries.coroutines)
+            implementation(projects.shared.libraries.flow)
+
             implementation(projects.shared.compose.resources)
             implementation(projects.shared.compose.components)
             implementation(projects.shared.compose.theme)

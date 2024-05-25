@@ -22,6 +22,7 @@ include(":composeApp")
 
 include(":shared:common-network:api")
 include(":shared:common-network:impl")
+include(":shared:libraries:decompose-main")
 include(":shared:umbrella-ios")
 include(":shared:core-di")
 include(

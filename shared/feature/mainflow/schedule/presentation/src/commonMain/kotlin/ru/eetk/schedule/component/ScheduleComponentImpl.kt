@@ -1,6 +1,7 @@
 package ru.eetk.schedule.component
 
 import com.arkivanov.decompose.ComponentContext
+import ru.eetk.theme.util.BaseComponent
 
 
 fun buildScheduleComponent(
@@ -11,6 +12,6 @@ fun buildScheduleComponent(
 
 internal class ScheduleComponentImpl(
     componentContext: ComponentContext
-): ScheduleComponent, ComponentContext by componentContext {
+): ScheduleComponent, BaseComponent(componentContext) {
 
 }

@@ -9,38 +9,35 @@ import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.backhandler.BackHandlerOwner
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.consume
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
-import org.koin.core.component.KoinComponent
+import models.SelectedTab
+import org.koin.core.component.inject
+import org.koin.core.qualifier.named
 import ru.eetk.coroutines.coroutineScope
+import ru.eetk.libraries.flow.FlowConstants
 import ru.eetk.settings.design.component.buildDesignComponent
 import ru.eetk.settings.menu.component.buildSettingsMenuComponent
 import ru.eetk.settings.notification.component.buildNotificationComponent
 import ru.eetk.settings.profile.component.buildProfileComponent
-import ru.eetk.settings.root.models.SelectedTab
+import ru.eetk.theme.util.BaseComponent
 
 
 fun buildSettingsRootComponent(
     componentContext: ComponentContext,
-    eventFlow: MutableSharedFlow<SelectedTab>
 ): SettingsRootComponent = SettingsRootComponentImpl(
-    componentContext = componentContext,
-    eventFlow = eventFlow
+    componentContext = componentContext
 )
 
 internal class SettingsRootComponentImpl(
     componentContext: ComponentContext,
-    private val eventFlow: MutableSharedFlow<SelectedTab>
-): SettingsRootComponent, ComponentContext by componentContext, BackHandlerOwner {
+): SettingsRootComponent, BaseComponent(componentContext), BackHandlerOwner {
     private val navigation = StackNavigation<Config>()
 
-    private val coroutineScope = coroutineScope()
+    private val eventFlow: MutableSharedFlow<SelectedTab> by inject(
+        qualifier = named(name = FlowConstants.TAB_FLOW)
+    )
 
     override val childStack: Value<ChildStack<*, SettingsRootComponent.Child>> =
         childStack(
@@ -52,7 +49,7 @@ internal class SettingsRootComponentImpl(
         )
 
     init {
-        coroutineScope.launch {
+        ioScope.launch {
             eventFlow.collect {
                 when(it) {
                     SelectedTab.SettingsTab -> navigation.replaceAll(Config.Menu)

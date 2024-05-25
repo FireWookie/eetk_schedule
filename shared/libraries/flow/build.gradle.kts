@@ -4,22 +4,17 @@ import ru.eetk.mobileapp.extension.iosTarget
 plugins {
     alias(libs.plugins.eetk.kmplibrary)
     alias(libs.plugins.eetk.compose.multiplatform)
-    alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
-    namespace = "ru.eetk.feature.schedule.presentation"
+    namespace = "ru.eetk.libraries.flow"
 }
 
 kotlin {
     androidTarget()
     iosTarget()
-
     sourceSets {
         commonDependencies {
-            implementation(projects.shared.compose.resources)
-            implementation(projects.shared.compose.theme)
-
             implementation(libs.koin.core)
         }
     }

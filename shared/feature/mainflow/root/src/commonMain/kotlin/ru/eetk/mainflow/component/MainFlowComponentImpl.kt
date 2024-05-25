@@ -12,13 +12,17 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
+import models.SelectedTab
+import org.koin.core.component.inject
+import org.koin.core.qualifier.named
 import ru.eetk.coroutines.coroutineScope
+import ru.eetk.libraries.flow.FlowConstants
 import ru.eetk.mainflow.component.utils.Screen
 import ru.eetk.mainflow.component.utils.Screen.*
 import ru.eetk.review.root.component.buildReviewRootComponent
 import ru.eetk.schedule.component.buildScheduleComponent
 import ru.eetk.settings.root.component.buildSettingsRootComponent
-import ru.eetk.settings.root.models.SelectedTab
+import ru.eetk.theme.util.BaseComponent
 
 
 /**
@@ -41,18 +45,15 @@ fun buildMainFlowComponent(
 @OptIn(ExperimentalDecomposeApi::class)
 internal class MainFlowComponentImpl(
     private val componentContext: ComponentContext,
-): ComponentContext by componentContext, MainFlowComponent {
+): BaseComponent(componentContext), MainFlowComponent {
 
     private val navigation = PagesNavigation<MainTabNavigation>()
 
-    override val eventFlow: MutableSharedFlow<SelectedTab> = MutableSharedFlow(1) // TODO (provide by DI)
-
-    private val coroutineScope = coroutineScope()
+    override val eventFlow: MutableSharedFlow<SelectedTab> by inject(named(FlowConstants.TAB_FLOW))
 
     override fun changeTab(index: Int) { // TODO (refactoring func)
-        coroutineScope.launch {
+        mainScope.launch {
             if (pages.value.selectedIndex == index) {
-                println(pages.value.selectedIndex)
                 when(pages.value.selectedIndex) {
                      Settings.index -> {
                          eventFlow.emit(SelectedTab.SettingsTab)
@@ -69,7 +70,7 @@ internal class MainFlowComponentImpl(
         initialPages = {
             Pages(
                 items = configs,
-                selectedIndex = 0
+                selectedIndex = Settings.index
             )
         },
         childFactory = ::createChildPageFactor,
@@ -98,8 +99,7 @@ internal class MainFlowComponentImpl(
 
             MainTabNavigation.Settings -> MainFlowComponent.MainTabs.Settings(
                 buildSettingsRootComponent(
-                    componentContext = componentContext,
-                    eventFlow = eventFlow
+                    componentContext = componentContext
                 )
             )
         }

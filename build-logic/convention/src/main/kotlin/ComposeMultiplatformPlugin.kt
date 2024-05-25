@@ -20,10 +20,9 @@ class ComposeMultiplatformPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
         apply(plugin = composePluginId)
-        apply(plugin = composeMainPluginId)
+        pluginManager.apply(composeMainPluginId)
 
         pluginManager.withPlugin(composePluginId) {
-            apply(plugin = composeMainPluginId)
             kmmExtension {
                 commonDependencies {
                     implementation(libs.compose.runtime)

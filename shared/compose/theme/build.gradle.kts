@@ -1,4 +1,5 @@
 import ru.eetk.mobileapp.extension.androidDependencies
+import ru.eetk.mobileapp.extension.commonDependencies
 import ru.eetk.mobileapp.extension.iosTarget
 
 plugins {
@@ -13,6 +14,12 @@ android {
 kotlin {
     androidTarget()
     iosTarget()
+
+    commonDependencies {
+        api(libs.decompose)
+        api(libs.decompose.compose)
+        implementation(libs.koin.core)
+    }
 
     androidDependencies {
         implementation(libs.androidx.activityCompose)

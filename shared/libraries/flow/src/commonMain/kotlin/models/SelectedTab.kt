@@ -1,4 +1,4 @@
-package ru.eetk.settings.root.models
+package models
 
 sealed interface SelectedTab {
     data object SettingsTab: SelectedTab

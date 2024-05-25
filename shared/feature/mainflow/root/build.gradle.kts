@@ -18,15 +18,17 @@ kotlin {
     sourceSets {
         commonDependencies {
             implementation(projects.shared.libraries.coroutines)
+            implementation(projects.shared.libraries.flow)
 
             implementation(projects.shared.feature.mainflow.settings.presentation)
             implementation(projects.shared.feature.mainflow.schedule.presentation)
             implementation(projects.shared.feature.mainflow.review.presentation)
+
             implementation(projects.shared.compose.resources)
             implementation(projects.shared.compose.components)
+            implementation(projects.shared.compose.theme)
 
-            implementation(libs.decompose)
-            implementation(libs.decompose.compose)
+            implementation(libs.koin.core)
 
 
         }
