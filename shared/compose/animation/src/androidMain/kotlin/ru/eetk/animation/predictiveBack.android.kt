@@ -24,16 +24,19 @@ actual fun <C : Any, T : Any> backAnimation(
     predictiveBackAnimation(
         backHandler = backHandler,
         selector = { backEvent, _, _ -> androidPredictiveBackAnimatable(backEvent) },
-        fallbackAnimation = stackAnimation { _, _, direction ->
-            when(direction) {
-                Direction.ENTER_FRONT -> FrontAnim
-                Direction.EXIT_FRONT -> BackAnim
-                Direction.ENTER_BACK -> FrontAnim
-                Direction.EXIT_BACK -> BackAnim
-            }
-        },
+        fallbackAnimation = stackAnim(),
         onBack = onBack,
     )
+
+@OptIn(FaultyDecomposeApi::class)
+private fun <C : Any, T : Any> stackAnim(): StackAnimation<C, T> = stackAnimation { _, _, direction ->
+    when (direction) {
+        Direction.ENTER_FRONT -> FrontAnim
+        Direction.EXIT_FRONT -> BackAnim
+        Direction.ENTER_BACK -> FrontAnim
+        Direction.EXIT_BACK -> BackAnim
+    }
+}
 
 private const val ANIMATION_THRESHOLD = 0.55f
 private const val ANIMATION_DURATION = 300

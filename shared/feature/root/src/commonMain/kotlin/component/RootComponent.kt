@@ -2,10 +2,11 @@ package component
 
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
+import com.arkivanov.essenty.backhandler.BackHandlerOwner
 import ru.eetk.launch.root.component.LaunchComponent
 import ru.eetk.mainflow.component.MainFlowComponent
 
-interface RootComponent {
+interface RootComponent : BackHandlerOwner {
     val childStack: Value<ChildStack<*, Child>>
 
     sealed class Child {

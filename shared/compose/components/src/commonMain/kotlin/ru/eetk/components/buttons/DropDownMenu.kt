@@ -4,9 +4,11 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -40,7 +42,12 @@ fun DDMBox(
     onDismissRequest: () -> Unit,
     onChangeItem: (String) -> Unit,
 ) {
-    Column {
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 16.dp)
+            .fillMaxWidth()
+            .height(50.dp)
+    ) {
         DDMField(
             title = title,
             desc = desc,
@@ -48,7 +55,8 @@ fun DDMBox(
             selectedItem = selectedItem,
             onClick = onClick
         )
-        Row(Modifier.align(Alignment.End)) {
+//        Spacer(modifier = Modifier.height(10.dp))
+        Row(Modifier.padding(top = 10.dp).align(Alignment.End)) {
             DDMBranch(
                 expanded = expanded,
                 onDismissRequest = onDismissRequest,
@@ -74,9 +82,7 @@ private fun DDMField(
     val animatedAngle by animateFloatAsState(angle)
     Row(
         modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .fillMaxWidth()
-            .height(50.dp)
+            .fillMaxSize()
             .clip(shape = shape)
             .clickable(onClick = onClick)
             .border(width = 1.dp, color = MaterialTheme.colorScheme.outline, shape = shape)

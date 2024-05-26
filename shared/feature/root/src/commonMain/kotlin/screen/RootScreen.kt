@@ -3,8 +3,7 @@ package screen
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
-import com.arkivanov.decompose.extensions.compose.stack.animation.fade
-import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
+import ru.eetk.animation.backAnimation
 import component.RootComponent
 import ru.eetk.launch.root.screen.LaunchScreen
 import ru.eetk.mainflow.screen.MainFlowScreen
@@ -18,8 +17,10 @@ fun RootScreen(
         Children(
             stack = component.childStack,
             modifier = modifier,
-            animation = stackAnimation(fade())
-
+            animation = backAnimation(
+                backHandler = component.backHandler,
+                onBack = {}
+            )
         ) {
             when (val child = it.instance) {
                 is RootComponent.Child.Launch -> LaunchScreen(child.component)
