@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.eetk.kmplibrary)
     alias(libs.plugins.eetk.compose.multiplatform)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.moko.resources)
 }
 
 android {

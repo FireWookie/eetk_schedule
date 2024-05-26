@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.arkivanov.decompose.router.pages.ChildPages
-import org.jetbrains.compose.resources.stringResource
+import dev.icerock.moko.resources.compose.stringResource
 import ru.eetk.components.layout.NavigationBar
 import ru.eetk.components.layout.NavigationBarItem
 import ru.eetk.mainflow.component.MainFlowComponent

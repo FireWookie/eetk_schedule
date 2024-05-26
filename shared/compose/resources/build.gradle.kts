@@ -4,7 +4,7 @@ import ru.eetk.mobileapp.extension.iosTarget
 plugins {
     alias(libs.plugins.eetk.kmplibrary)
     alias(libs.plugins.eetk.compose.multiplatform)
-//    alias(libs.plugins.compose.jb)
+    alias(libs.plugins.moko.resources)
 }
 
 android {
@@ -16,17 +16,16 @@ kotlin {
     iosTarget()
 
     sourceSets {
-        all {
-            languageSettings {
-                optIn("org.jetbrains.compose.resources.ExperimentalResourceApi")
-            }
-        }
         commonDependencies {
-            api(libs.compose.resources)
+            implementation(libs.moko.resources)
+            api(libs.moko.resources.compose)
         }
     }
 }
 
-compose.resources {
-    publicResClass = true
+multiplatformResources {
+    iosBaseLocalizationRegion = "ru" // optional, default "en"
+    resourcesClassName.set("EetkRes")
+    resourcesPackage.set("ru.eetk.resources")
+
 }

@@ -2,6 +2,7 @@ import com.android.build.api.dsl.ManagedVirtualDevice
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.multiplatform)
@@ -9,6 +10,8 @@ plugins {
     alias(libs.plugins.compose.main)
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlinx.serialization)
+
+    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -35,7 +38,7 @@ kotlin {
     composeCompiler {
         enableStrongSkippingMode = true
     }
-
+    val xcFramework = XCFramework("ComposeApp")
     listOf(
         iosX64(),
         iosArm64(),
@@ -44,9 +47,19 @@ kotlin {
         it.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+            xcFramework.add(this)
+
             export(projects.shared.compose.theme)
             export(projects.shared.feature.root)
             export(projects.shared.coreDi)
+            export(projects.shared.compose.resources)
+            export(projects.shared.feature.mainflow.root)
+            export(projects.shared.feature.mainflow.review.presentation)
+            export(projects.shared.feature.mainflow.schedule.presentation)
+            export(projects.shared.feature.mainflow.settings.presentation)
+            export(projects.shared.libraries.coroutines)
+            export(projects.shared.libraries.flow)
+            export(projects.shared.libraries.datastore)
 
             export(libs.decompose)
             export(libs.decompose.compose)
@@ -69,7 +82,6 @@ kotlin {
             implementation(libs.composeImageLoader)
             implementation(libs.napier)
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.ktor.core)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
@@ -81,6 +93,15 @@ kotlin {
             implementation(projects.shared.compose.theme)
             implementation(projects.shared.feature.root)
             implementation(projects.shared.coreDi)
+
+            implementation(projects.shared.feature.mainflow.root)
+            implementation(projects.shared.feature.mainflow.review.presentation)
+            implementation(projects.shared.feature.mainflow.schedule.presentation)
+            implementation(projects.shared.feature.mainflow.settings.presentation)
+            implementation(projects.shared.libraries.coroutines)
+            implementation(projects.shared.libraries.flow)
+            implementation(projects.shared.libraries.datastore)
+            implementation(projects.shared.compose.resources)
         }
 
         commonTest.dependencies {
@@ -98,6 +119,15 @@ kotlin {
             api(projects.shared.compose.theme)
             api(projects.shared.feature.root)
             api(projects.shared.coreDi)
+
+            api(projects.shared.feature.mainflow.root)
+            api(projects.shared.feature.mainflow.review.presentation)
+            api(projects.shared.feature.mainflow.schedule.presentation)
+            api(projects.shared.feature.mainflow.settings.presentation)
+            api(projects.shared.libraries.coroutines)
+            api(projects.shared.libraries.flow)
+            api(projects.shared.libraries.datastore)
+            api(projects.shared.compose.resources)
 
             api(libs.decompose)
             api(libs.decompose.compose)

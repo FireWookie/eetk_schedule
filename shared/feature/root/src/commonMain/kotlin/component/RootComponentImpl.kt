@@ -31,6 +31,8 @@ class RootComponentImpl(
     componentContext: ComponentContext
 ) : RootComponent, ComponentContext by componentContext, KoinComponent {
 
+    private val navigation = StackNavigation<Config>()
+
     private val dataStore: DataStore<Preferences> by inject()
     private val coroutineScope = coroutineScope()
 
@@ -46,8 +48,6 @@ class RootComponentImpl(
             }
         }
     }
-
-    private val navigation = StackNavigation<Config>()
 
     override val childStack: Value<ChildStack<*, RootComponent.Child>> =
         childStack(

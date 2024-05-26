@@ -24,6 +24,7 @@ class ComposeMultiplatformPlugin : Plugin<Project> {
 
         pluginManager.withPlugin(composePluginId) {
             kmmExtension {
+                jvmToolchain(17)
                 commonDependencies {
                     implementation(libs.compose.runtime)
                     implementation(libs.compose.foundation)

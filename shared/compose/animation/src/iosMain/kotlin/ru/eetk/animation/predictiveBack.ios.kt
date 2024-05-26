@@ -56,7 +56,7 @@ private fun Modifier.slideEnterModifier(progress: Float): Modifier =
 private fun Modifier.fade(factor: Float) =
     drawWithContent {
         drawContent()
-        drawRect(color = Color(red = 0F, green = 0F, blue = 0F, alpha = (1F - factor) / 4F))
+        drawRect(color = Color.White, alpha = 0f)
     }
 
 private fun Modifier.offsetXFactor(factor: Float): Modifier =

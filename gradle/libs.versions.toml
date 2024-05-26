@@ -16,10 +16,11 @@ napier = "2.7.1"
 kotlinx-coroutines = "1.8.1"
 ktor = "2.3.9"
 kotlinx-serialization = "1.6.3"
-kotlinx-datetime = "0.5.0"
+kotlinx-datetime = "0.6.0"
 koin = "3.5.6"
 datastore = "1.1.1"
 mvikotlin = "4.0.0"
+moko-resources = "0.24.0-beta-5"
 
 [libraries]
 
@@ -66,11 +67,15 @@ koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compos
 datastore-core = { module = "androidx.datastore:datastore", version.ref="datastore" }
 datastore = { module = "androidx.datastore:datastore-preferences", version.ref="datastore" }
 
+#moko
+moko-resources = { module = "dev.icerock.moko:resources", version.ref="moko-resources" }
+moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref="moko-resources" }
 
 # Gradle plugins
 compose-gradle-plugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose" }
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+moko-resources-generator = { module = "dev.icerock.moko:resources-generator", version.ref = "moko-resources" }
 
 [plugins]
 
@@ -81,6 +86,7 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 
 # Convention app
 eetk-compose-multiplatform = { id = "eetk.compose-multiplatform", version = "unspecified" }

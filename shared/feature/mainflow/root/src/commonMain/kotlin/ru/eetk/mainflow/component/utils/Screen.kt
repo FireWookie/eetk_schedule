@@ -1,12 +1,9 @@
 package ru.eetk.mainflow.component.utils
 
 import androidx.compose.ui.graphics.vector.ImageVector
-import eetk_app.shared.compose.resources.generated.resources.Res
-import eetk_app.shared.compose.resources.generated.resources.review
-import eetk_app.shared.compose.resources.generated.resources.schedule
-import eetk_app.shared.compose.resources.generated.resources.settings
-import org.jetbrains.compose.resources.StringResource
+import dev.icerock.moko.resources.StringResource
 import ru.eetk.resources.EETKPack
+import ru.eetk.resources.EetkRes
 import ru.eetk.resources.eetkpack.Review
 import ru.eetk.resources.eetkpack.Reviewfilled
 import ru.eetk.resources.eetkpack.Schedule
@@ -23,21 +20,21 @@ internal sealed class Screen(
 
     data object Schedule : Screen(
         index = 0,
-        labelId = Res.string.schedule,
+        labelId = EetkRes.strings.schedule,
         icon = EETKPack.Schedule,
         iconSelected = EETKPack.Schedulefilled
     )
 
     data object Review : Screen(
         index = 1,
-        labelId = Res.string.review,
+        labelId = EetkRes.strings.review,
         icon = EETKPack.Review,
         iconSelected = EETKPack.Reviewfilled
     )
 
     data object Settings : Screen(
         index = 2,
-        labelId = Res.string.settings,
+        labelId = EetkRes.strings.settings,
         icon = EETKPack.Settings,
         iconSelected = EETKPack.Settingsfilled
     )
