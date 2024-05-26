@@ -12,12 +12,12 @@ import eetk_app.shared.compose.resources.generated.resources.eetk_review
 import org.jetbrains.compose.resources.stringResource
 import ru.eetk.components.layout.CenteredColumn
 import ru.eetk.review.root.component.ReviewRootComponent
-import ru.eetk.components.layout.TopappBar
+import ru.eetk.components.layout.TitleAppBar
 
 @Composable
 fun ReviewRootScreen(component: ReviewRootComponent) {
     Scaffold(
-        topBar = { TopappBar(text = stringResource(Res.string.eetk_review)) },
+        topBar = { TitleAppBar(text = stringResource(Res.string.eetk_review)) },
         content = { insetPadding -> ReviewRootScreenContent(component = component, insetPadding = insetPadding) }
     )
 }

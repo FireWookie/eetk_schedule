@@ -1,6 +1,7 @@
 package ru.eetk.components.buttons
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -37,25 +38,14 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+
 @Composable
-fun SettingsPrimarySwitch(text: String, checked: MutableState<Boolean>,modifier: Modifier = Modifier) {
-    Row(
-        modifier = modifier.fillMaxWidth().height(50.dp).padding(horizontal = 5.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(
-            text = text,
-            style = MaterialTheme.typography.titleMedium
-        )
-        Switch(
-            checked = checked.value,
-            onCheckedChange = { checked.value = it }
-        )
-    }
-}
-@Composable
-fun SettingsPrimaryDropDownMenu(text: String, modifier: Modifier = Modifier) {
+fun SettingsPrimaryDropDownMenu(
+    text: String,
+    selectedItem:String,
+    dropDownMenuItems: @Composable ColumnScope.() -> Unit,
+    modifier: Modifier = Modifier
+) {
     var clicked by remember {
         mutableStateOf(false)
     }
@@ -72,10 +62,14 @@ fun SettingsPrimaryDropDownMenu(text: String, modifier: Modifier = Modifier) {
                     angle = if (angle == 0f) 180f else 0f
                 }).padding(horizontal = 5.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 text = text,
+                style = MaterialTheme.typography.titleMedium
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = selectedItem,
                 style = MaterialTheme.typography.titleMedium
             )
             Icon(
@@ -90,12 +84,23 @@ fun SettingsPrimaryDropDownMenu(text: String, modifier: Modifier = Modifier) {
             DropdownMenu(
                 expanded = clicked,
                 modifier = Modifier,
-                onDismissRequest = { clicked = false }
-            ) {
-                DropdownMenuItem(text = { Text("Системная") }, onClick = {})
-                DropdownMenuItem(text = { Text("Выключена") }, onClick = {})
-                DropdownMenuItem(text = { Text("Включена") }, onClick = {})
-            }
+                onDismissRequest = { clicked = false },
+                content = dropDownMenuItems
+            )
         }
     }
+}
+//DropdownMenuItem(text = { Text("Выключена") }, onClick = {})
+//DropdownMenuItem(text = { Text("Включена") }, onClick = {})
+@Composable
+fun DropDownMenuitem(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    DropdownMenuItem(
+        text = { Text(text = text) },
+        onClick = onClick
+
+    )
 }

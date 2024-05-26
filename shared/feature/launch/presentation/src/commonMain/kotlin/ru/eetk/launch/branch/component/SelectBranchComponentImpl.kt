@@ -15,8 +15,7 @@ internal class SelectBranchComponentImpl(
     componentContext: ComponentContext,
     private val selectBranch: (BranchUI) -> Unit
 ): ComponentContext by componentContext, SelectBranchComponent {
+
     override fun onSelectBranch(branch: BranchUI) = selectBranch(branch)
-
-
 
 }

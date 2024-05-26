@@ -53,7 +53,7 @@ class RootComponentImpl(
     override val childStack: Value<ChildStack<*, RootComponent.Child>> =
         childStack(
             source = navigation,
-            initialConfiguration = Config.MainFlow,
+            initialConfiguration = Config.Launch,
             handleBackButton = true,
             childFactory = ::processChild,
             serializer = Config.serializer()
@@ -67,6 +67,9 @@ class RootComponentImpl(
             component = buildLaunchComponent(
                 componentContext = componentContext,
                 onOpenMainFlow = {
+
+                    navigation.replaceAll(Config.MainFlow)
+
                     coroutineScope.launch {
                         dataStore.edit {
                             completeLaunch()

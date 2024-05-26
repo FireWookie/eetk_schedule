@@ -1,11 +1,12 @@
 package ru.eetk.components.buttons
 
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun FilledButton(
+fun PrimaryButton(
+    text: String,
     onClick: () -> Unit,
 //    modifier: Modifier = Modifier,
 //    enabled: Boolean = true,
@@ -15,10 +16,10 @@ fun FilledButton(
 //    border: BorderStroke? = null,
 //    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
 //    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: @Composable() (RowScope.() -> Unit)
+//    content: @Composable() (RowScope.() -> Unit)
 ) {
     Button(
         onClick = onClick,
-        content = content
+        content = { Text(text = text) }
     )
 }

@@ -21,7 +21,7 @@ import eetk_app.shared.compose.resources.generated.resources.settings_profile
 import org.jetbrains.compose.resources.stringResource
 import ru.eetk.components.buttons.PrimaryEETKButton
 import ru.eetk.components.layout.CenteredColumn
-import ru.eetk.components.layout.TopappBar
+import ru.eetk.components.layout.TitleAppBar
 
 import ru.eetk.settings.menu.component.SettingsMenuComponent
 
@@ -31,7 +31,7 @@ internal fun SettingsMenuScreen(
     component: SettingsMenuComponent
 ) {
     Scaffold(
-        topBar = { TopappBar(text = stringResource(Res.string.settings)) },
+        topBar = { TitleAppBar(text = stringResource(Res.string.settings)) },
         content = { insetPadding -> SettingsMenuContent(component = component, insetPadding = insetPadding) }
     )
 }
