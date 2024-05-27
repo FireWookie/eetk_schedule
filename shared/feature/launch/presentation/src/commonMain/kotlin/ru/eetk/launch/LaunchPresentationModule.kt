@@ -8,6 +8,7 @@ val launchPresentationModule = module {
     factory {
         CourseStoreFactory(
             storeFactory = get(),
+            dataStore = get()
         ).create()
     }
 }

@@ -17,11 +17,15 @@ kotlin {
 
     sourceSets {
         commonDependencies {
+            implementation(projects.shared.libraries.datastore)
+            implementation(projects.shared.persistent)
+
             implementation(projects.shared.feature.launch.domain)
 
             implementation(projects.shared.compose.animation)
             implementation(projects.shared.compose.components)
             implementation(projects.shared.compose.resources)
+            implementation(projects.shared.compose.theme)
 
             implementation(libs.decompose)
             implementation(libs.decompose.compose)

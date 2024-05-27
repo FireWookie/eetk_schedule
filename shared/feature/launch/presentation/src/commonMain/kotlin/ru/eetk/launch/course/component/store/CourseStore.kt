@@ -9,6 +9,8 @@ interface CourseStore: Store<CourseStore.Intent, CourseStore.State, Nothing> {
         data class ChangeSelectedCourse(val item: Pair<Int, StringResource>): Intent
 
         data object ChangeExpanded: Intent
+
+        data class SaveInfoLaunch(val college: Int, val course: Int): Intent
     }
 
     sealed interface Message {

@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-enum class BranchUI {
-    MTO,
-    ETO
+enum class BranchUI(val college: Int) {
+    MTO(1),
+    ETO(2)
 }

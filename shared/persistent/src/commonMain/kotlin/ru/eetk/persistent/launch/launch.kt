@@ -13,3 +13,4 @@ val Preferences.showLaunch: Boolean
 fun MutablePreferences.completeLaunch() {
     this[SHOW_LAUNCH] = false
 }
+
