@@ -34,6 +34,8 @@ import ru.eetk.persistent.appearance.Theme
 import ru.eetk.persistent.appearance.appTheme
 import ru.eetk.persistent.launch.completeLaunch
 import ru.eetk.persistent.launch.showLaunch
+import ru.eetk.splash.component.buildSplashComponent
+import ru.eetk.splash.component.models.SplashResult
 import ru.eetk.theme.util.BaseComponent
 
 class RootComponentImpl(
@@ -47,7 +49,7 @@ class RootComponentImpl(
     override val childStack: Value<ChildStack<*, RootComponent.Child>> =
         childStack(
             source = navigation,
-            initialConfiguration = Config.Launch,
+            initialConfiguration = Config.Splash,
             handleBackButton = true,
             childFactory = ::processChild,
             serializer = Config.serializer()
@@ -57,14 +59,6 @@ class RootComponentImpl(
         .map { Theme.fromOrdinal(it.appTheme.theme) }
         .distinctUntilChanged()
         .stateIn(scope = mainScope, started = SharingStarted.Eagerly, initialValue = null)
-
-    init {
-        runBlocking {
-            if (!dataStore.data.first().showLaunch) {
-                navigation.replaceAll(Config.MainFlow)
-            }
-        }
-    }
 
     private fun processChild(
         config: Config,
@@ -83,6 +77,18 @@ class RootComponentImpl(
                 componentContext = componentContext
             )
         )
+
+        Config.Splash -> RootComponent.Child.Splash(
+            component = buildSplashComponent(
+                componentContext = componentContext,
+                onOpenScreen = {
+                    when(it){
+                        SplashResult.Launch -> navigation.replaceAll(Config.Launch)
+                        SplashResult.MainFlow -> navigation.replaceAll(Config.MainFlow)
+                    }
+                }
+            )
+        )
     }
 
     @Serializable
@@ -91,5 +97,7 @@ class RootComponentImpl(
         data object Launch : Config
         @Serializable
         data object MainFlow: Config
+
+        data object Splash: Config
     }
 }

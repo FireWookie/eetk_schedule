@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 import ru.eetk.launch.root.component.LaunchComponent
 import ru.eetk.mainflow.component.MainFlowComponent
 import ru.eetk.persistent.appearance.Theme
+import ru.eetk.splash.component.SplashComponent
 
 interface RootComponent {
     val childStack: Value<ChildStack<*, Child>>
@@ -15,5 +16,7 @@ interface RootComponent {
     sealed class Child {
         class Launch(val component: LaunchComponent): Child()
         class MainFlow(val component: MainFlowComponent): Child()
+
+        class Splash(val component: SplashComponent): Child()
     }
 }

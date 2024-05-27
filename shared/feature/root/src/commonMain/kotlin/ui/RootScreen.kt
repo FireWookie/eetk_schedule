@@ -12,6 +12,7 @@ import ru.eetk.animation.stackAnim
 import ru.eetk.launch.root.ui.LaunchScreen
 import ru.eetk.mainflow.ui.MainFlowScreen
 import ru.eetk.persistent.appearance.Theme
+import ru.eetk.splash.ui.SplashScreen
 import ru.eetk.theme.EETKTheme
 
 
@@ -23,6 +24,7 @@ fun RootScreen(
 ) {
     val theme by component.theme.collectAsState()
     theme?.let {
+        println("Theme value: ${it.name}")
         val isDarkTheme = when (it) {
             Theme.System -> isSystemInDarkTheme()
             Theme.Dark -> true
@@ -41,6 +43,7 @@ fun RootScreen(
                 when (val child = it.instance) {
                     is RootComponent.Child.Launch -> LaunchScreen(child.component)
                     is RootComponent.Child.MainFlow -> MainFlowScreen(child.component)
+                    is RootComponent.Child.Splash -> SplashScreen(child.component)
                 }
             }
         }
