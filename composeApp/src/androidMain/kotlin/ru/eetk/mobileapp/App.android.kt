@@ -41,19 +41,7 @@ class AppActivity : ComponentActivity() {
         val root = RootComponentImpl(defaultComponentContext())
         setContent {
             RootScreen(
-                component = root,
-                isDark = { theme ->
-                    enableEdgeToEdge(
-                        statusBarStyle = SystemBarStyle.auto(
-                            lightScrim = Color.TRANSPARENT,
-                            darkScrim = Color.TRANSPARENT,
-                        ) { theme },
-                        navigationBarStyle = SystemBarStyle.auto(
-                            lightScrim = Color.TRANSPARENT,
-                            darkScrim = Color.TRANSPARENT,
-                        ) { theme },
-                    )
-                }
+                component = root
             )
         }
     }

@@ -20,19 +20,13 @@ import ru.eetk.theme.EETKTheme
 fun RootScreen(
     component: RootComponent,
     modifier: Modifier = Modifier,
-    isDark: (Boolean) -> Unit = {}
 ) {
     val theme by component.theme.collectAsState()
     theme?.let {
-        println("Theme value: ${it.name}")
         val isDarkTheme = when (it) {
             Theme.System -> isSystemInDarkTheme()
             Theme.Dark -> true
             Theme.Light -> false
-        }
-        DisposableEffect(isDarkTheme) {
-            isDark.invoke(isDarkTheme)
-            onDispose {  }
         }
         EETKTheme(isDark = isDarkTheme) {
             Children(
