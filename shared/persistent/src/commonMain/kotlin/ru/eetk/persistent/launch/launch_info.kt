@@ -17,5 +17,6 @@ val Preferences.launchInfo: LaunchInfo
 fun MutablePreferences.setLaunchInfo(course: Int, college: Int) {
     this[COURSE_INFO] = course
     this[COLLEGE_INFO] = college
+    completeLaunch()
 }
 

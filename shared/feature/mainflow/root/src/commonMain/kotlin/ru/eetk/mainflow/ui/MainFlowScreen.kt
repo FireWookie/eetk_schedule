@@ -1,4 +1,4 @@
-package ru.eetk.mainflow.screen
+package ru.eetk.mainflow.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Icon

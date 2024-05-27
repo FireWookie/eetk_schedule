@@ -18,6 +18,8 @@ kotlin {
     commonDependencies {
         api(libs.decompose)
         api(libs.decompose.compose)
+
+        implementation(projects.shared.libraries.coroutines)
         implementation(libs.koin.core)
     }
 

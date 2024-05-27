@@ -1,6 +1,7 @@
 package ru.eetk.settings.menu.component
 
 import com.arkivanov.decompose.ComponentContext
+import ru.eetk.theme.util.BaseComponent
 
 internal fun buildSettingsMenuComponent(
     componentContext: ComponentContext,
@@ -19,7 +20,8 @@ internal class SettingsMenuComponentImpl(
     private val profileClick: () -> Unit,
     private val notificationClick: () -> Unit,
     private val designClick: () -> Unit
-): SettingsMenuComponent, ComponentContext by componentContext {
+): SettingsMenuComponent, BaseComponent(componentContext) {
+
     override fun onProfileClick() = profileClick()
 
     override fun onNotificationClick() = notificationClick()

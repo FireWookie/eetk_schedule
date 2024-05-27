@@ -40,6 +40,7 @@ include(
     ":shared:feature:launch:presentation"
 )
 include("shared:feature:root")
+include("shared:feature:splash")
 include(
     ":shared:feature:mainflow:schedule:data",
     ":shared:feature:mainflow:schedule:domain",

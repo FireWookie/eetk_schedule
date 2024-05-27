@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.eetk.feature.settings.presentation"
+    namespace = "ru.eetk.feature.splash"
 }
 
 kotlin {
@@ -17,22 +17,17 @@ kotlin {
 
     sourceSets {
         commonDependencies {
-            implementation(libs.koin.core)
-
+            implementation(projects.shared.libraries.datastore)
             implementation(projects.shared.persistent)
 
-            implementation(projects.shared.libraries.coroutines)
-            implementation(projects.shared.libraries.flow)
-
-            implementation(projects.shared.compose.resources)
-            implementation(projects.shared.compose.components)
-            implementation(projects.shared.compose.theme)
             implementation(projects.shared.compose.animation)
+            implementation(projects.shared.compose.components)
+            implementation(projects.shared.compose.resources)
+            implementation(projects.shared.compose.theme)
 
-            implementation(libs.mvikotlin.extensions)
-            implementation(libs.mvikotlin)
-            implementation(libs.mvikotlin.main)
-
+            implementation(libs.decompose)
+            implementation(libs.decompose.compose)
+            implementation(libs.koin.core)
         }
     }
 }

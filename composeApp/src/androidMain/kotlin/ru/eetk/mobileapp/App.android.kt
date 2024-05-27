@@ -2,17 +2,24 @@ package ru.eetk.mobileapp
 
 import android.app.Application
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import com.arkivanov.decompose.defaultComponentContext
-import component.RootComponent
 import component.RootComponentImpl
 import org.koin.android.ext.koin.androidContext
 import ru.eetk.di.KoinInjector
-import screen.RootScreen
+import ru.eetk.persistent.appearance.Theme
+import ru.eetk.theme.EETKTheme
+import ui.RootScreen
 
 class AndroidApp : Application() {
     companion object {
@@ -33,7 +40,21 @@ class AppActivity : ComponentActivity() {
         enableEdgeToEdge()
         val root = RootComponentImpl(defaultComponentContext())
         setContent {
-            RootScreen(component = root)
+            RootScreen(
+                component = root,
+                isDark = { theme ->
+                    enableEdgeToEdge(
+                        statusBarStyle = SystemBarStyle.auto(
+                            lightScrim = Color.TRANSPARENT,
+                            darkScrim = Color.TRANSPARENT,
+                        ) { theme },
+                        navigationBarStyle = SystemBarStyle.auto(
+                            lightScrim = Color.TRANSPARENT,
+                            darkScrim = Color.TRANSPARENT,
+                        ) { theme },
+                    )
+                }
+            )
         }
     }
 }

@@ -99,6 +99,7 @@ kotlin {
             implementation(projects.shared.feature.mainflow.schedule.presentation)
             implementation(projects.shared.feature.mainflow.settings.presentation)
             implementation(projects.shared.libraries.coroutines)
+            implementation(projects.shared.persistent)
             implementation(projects.shared.libraries.flow)
             implementation(projects.shared.libraries.datastore)
             implementation(projects.shared.compose.resources)
