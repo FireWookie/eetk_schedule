@@ -17,6 +17,7 @@ kotlin {
     sourceSets {
         commonDependencies {
             implementation(libs.decompose.compose)
+            api(libs.cupertino.decompose)
             implementation(libs.decompose)
         }
     }

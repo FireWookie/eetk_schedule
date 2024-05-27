@@ -24,6 +24,7 @@ kotlin {
             
 //            Import Theme
             implementation(projects.shared.compose.theme)
+            implementation(projects.shared.compose.animation)
 
             implementation(libs.decompose)
             implementation(libs.decompose.compose)

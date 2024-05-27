@@ -13,10 +13,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import dev.icerock.moko.resources.compose.stringResource
 import models.BranchUI
-import ru.eetk.components.cards.BranchCard
+import ru.eetk.components.cards.EETKBranchCard
 import ru.eetk.components.layout.CenteredColumn
 import ru.eetk.launch.branch.component.SelectBranchComponent
+import ru.eetk.resources.EetkRes
 
 @Composable
 internal fun SelectBranchScreen(component: SelectBranchComponent) {
@@ -30,20 +32,19 @@ internal fun SelectBranchScreen(component: SelectBranchComponent) {
             modifier = Modifier.height(120.dp).width(140.dp)
         )
         Text(
-            text = "Выберите филиал",
-            color = MaterialTheme.colorScheme.primary,
+            text = stringResource(EetkRes.strings.select_branch),
             style = MaterialTheme.typography.headlineLarge
         )
         Column(
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            BranchCard(
+            EETKBranchCard(
                 onClick = { component.onSelectBranch(BranchUI.ETO) },
-                text = "ЭТО \n(ул. Декабристов 58 и ул.Ясная 1/5)"
+                text = stringResource(EetkRes.strings.branch_eto)
             )
-            BranchCard(
+            EETKBranchCard(
                 onClick = { component.onSelectBranch(BranchUI.MTO) },
-                text = "МТО (пр.Космонавтов 50)"
+                text = stringResource(EetkRes.strings.branch_mto)
             )
         }
     }

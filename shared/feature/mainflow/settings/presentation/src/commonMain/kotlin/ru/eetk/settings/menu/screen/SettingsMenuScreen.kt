@@ -1,22 +1,22 @@
 package ru.eetk.settings.menu.screen
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.Palette
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.compose.stringResource
-import ru.eetk.components.buttons.PrimaryEETKButton
+import ru.eetk.components.cards.EETKSettingCard
 import ru.eetk.components.layout.CenteredColumn
-import ru.eetk.resources.EETKPack
+import ru.eetk.components.layout.TitleAppBar
 import ru.eetk.resources.EetkRes
-import ru.eetk.resources.eetkpack.Info
-import ru.eetk.resources.eetkpack.Notification
-import ru.eetk.resources.eetkpack.Palette
-import ru.eetk.resources.eetkpack.Person
-
 import ru.eetk.settings.menu.component.SettingsMenuComponent
 
 
@@ -24,31 +24,40 @@ import ru.eetk.settings.menu.component.SettingsMenuComponent
 internal fun SettingsMenuScreen(
     component: SettingsMenuComponent
 ) {
+    Scaffold(
+        topBar = { TitleAppBar(text = stringResource(EetkRes.strings.settings)) },
+        content = { insetPadding -> SettingsMenuContent(component = component, insetPadding = insetPadding) }
+    )
+}
+
+@Composable
+private fun SettingsMenuContent(
+    component: SettingsMenuComponent,
+    insetPadding: PaddingValues
+) {
+    val icons = Icons.Outlined
     CenteredColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 10.dp),
+        modifier = Modifier.padding(insetPadding),
         verticalArrangement = Arrangement.spacedBy(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        PrimaryEETKButton(
+        EETKSettingCard(
             text = stringResource(EetkRes.strings.notification),
-            icon = EETKPack.Notification,
+            icon = icons.Notifications,
             onClick = component::onNotificationClick
         )
-        PrimaryEETKButton(
+        EETKSettingCard(
             text = stringResource(EetkRes.strings.design),
-            icon = EETKPack.Palette,
+            icon = icons.Palette,
             onClick = component::onDesignClick
         )
-        PrimaryEETKButton(
+        EETKSettingCard(
             text = stringResource(EetkRes.strings.settings_profile),
-            icon = EETKPack.Person,
+            icon = icons.Person,
             onClick = component::onProfileClick
         )
-        PrimaryEETKButton(
+        EETKSettingCard(
             text = stringResource(EetkRes.strings.about_app),
-            icon = EETKPack.Info,
+            icon = icons.Info,
             onClick = {}
         )
     }

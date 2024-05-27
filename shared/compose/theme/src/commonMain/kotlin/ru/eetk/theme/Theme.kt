@@ -84,19 +84,7 @@ private val darkScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDark,
 )
 
-//@Immutable
-//data class ColorFamily(
-//    val color: Color,
-//    val onColor: Color,
-//    val colorContainer: Color,
-//    val onColorContainer: Color
-//)
-//
-//val unspecified_scheme = ColorFamily(
-//    Color.Unspecified, Color.Unspecified, Color.Unspecified, Color.Unspecified
-//)
-
-val LocalThemeIsDark = compositionLocalOf { mutableStateOf(true) }
+//val LocalThemeIsDark = compositionLocalOf { mutableStateOf(true) }
 
 @Composable
 fun EETKTheme(
@@ -104,21 +92,23 @@ fun EETKTheme(
     content: @Composable () -> Unit
 ) {
 
-    val systemIsDark = isSystemInDarkTheme()
-    val isDarkState = remember { mutableStateOf(systemIsDark) }
-    CompositionLocalProvider(
-        LocalThemeIsDark provides isDarkState
-    ) {
-        val isDark by isDarkState
+//    val systemIsDark = isSystemInDarkTheme()
+//    val isDarkState = remember { mutableStateOf(systemIsDark) }
+//    CompositionLocalProvider(
+//        LocalThemeIsDark provides isDarkState
+//    ) {
+        val isDark = isSystemInDarkTheme()
         SystemAppearance(!isDark)
         val defaultColorScheme = if(isDark) darkScheme else lightScheme
         val colorScheme = dynamicColors(isDark, dynamicTheme) ?: defaultColorScheme
         MaterialTheme(
             colorScheme = colorScheme,
+            shapes = EETKShapes(),
+            typography = EETKTypography(colorScheme),
             content = { Surface(content = content) }
         )
     }
-}
+//}
 
 @Composable
 internal expect fun SystemAppearance(isDark: Boolean)
