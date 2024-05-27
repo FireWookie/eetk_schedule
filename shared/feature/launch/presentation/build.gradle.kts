@@ -21,7 +21,8 @@ kotlin {
 
             implementation(projects.shared.compose.animation)
             implementation(projects.shared.compose.components)
-            
+            implementation(projects.shared.compose.resources)
+
             implementation(libs.decompose)
             implementation(libs.decompose.compose)
             implementation(libs.koin.core)

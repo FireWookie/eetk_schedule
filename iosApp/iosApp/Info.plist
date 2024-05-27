@@ -6,5 +6,7 @@
 	<array>
 		<string>RU</string>
 	</array>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 </dict>
 </plist>

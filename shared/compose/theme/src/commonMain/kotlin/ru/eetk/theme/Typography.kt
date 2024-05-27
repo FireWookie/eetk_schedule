@@ -1,4 +1,10 @@
-//package ru.eetk.theme
+package ru.eetk.theme
+
+import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
+import androidx.compose.runtime.Composable
+
 //
 //package com.example.ui.theme
 //
@@ -32,13 +38,15 @@
 //)
 //
 //// Default Material 3 typography values
-//val baseline = Typography()
-//
-//val AppTypography = Typography(
+
+@Composable
+internal fun EETKTypography(colorScheme: ColorScheme): Typography {
+    val baseline = Typography()
+    val typography = Typography(
 //    displayLarge = baseline.displayLarge.copy(fontFamily = displayFontFamily),
 //    displayMedium = baseline.displayMedium.copy(fontFamily = displayFontFamily),
 //    displaySmall = baseline.displaySmall.copy(fontFamily = displayFontFamily),
-//    headlineLarge = baseline.headlineLarge.copy(fontFamily = displayFontFamily),
+        headlineLarge = baseline.headlineLarge.copy(color = colorScheme.primary),
 //    headlineMedium = baseline.headlineMedium.copy(fontFamily = displayFontFamily),
 //    headlineSmall = baseline.headlineSmall.copy(fontFamily = displayFontFamily),
 //    titleLarge = baseline.titleLarge.copy(fontFamily = displayFontFamily),
@@ -50,5 +58,6 @@
 //    labelLarge = baseline.labelLarge.copy(fontFamily = bodyFontFamily),
 //    labelMedium = baseline.labelMedium.copy(fontFamily = bodyFontFamily),
 //    labelSmall = baseline.labelSmall.copy(fontFamily = bodyFontFamily),
-//)
-//
+    )
+    return typography
+}

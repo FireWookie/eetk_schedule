@@ -18,6 +18,7 @@ kotlin {
     sourceSets {
         commonDependencies {
             implementation(libs.moko.resources)
+            api(libs.compose.icons.extended)
             api(libs.moko.resources.compose)
         }
     }

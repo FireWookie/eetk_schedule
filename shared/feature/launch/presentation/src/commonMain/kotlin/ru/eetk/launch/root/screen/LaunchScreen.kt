@@ -1,5 +1,6 @@
 package ru.eetk.launch.root.screen
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -14,24 +15,28 @@ import ru.eetk.launch.root.component.LaunchComponent
 
 @Composable
 fun LaunchScreen(component: LaunchComponent) {
-    Scaffold { insetPadding ->
-        val stack by component.childStack.subscribeAsState()
-        Children(
-            stack = stack,
-            modifier = Modifier.padding(insetPadding),
-            animation = backAnimation(
-              backHandler = component.backHandler,
-              onBack = component::onBackClicked
-            )
-        ) { config ->
-            when (val child = config.instance) {
-                is LaunchComponent.Child.Branch -> SelectBranchScreen(
-                    child.component
-                )
 
-                is LaunchComponent.Child.Course -> SelectCourseScreen(
-                    child.component
-                )
+    val stack by component.childStack.subscribeAsState()
+    Children(
+        stack = stack,
+        animation = backAnimation(
+            backHandler = component.backHandler,
+            onBack = component::onBackClicked
+        )
+    ) { config ->
+        Scaffold { insetPadding ->
+            Column(
+                modifier = Modifier.padding(insetPadding)
+            ) {
+                when (val child = config.instance) {
+                    is LaunchComponent.Child.Branch -> SelectBranchScreen(
+                        child.component
+                    )
+
+                    is LaunchComponent.Child.Course -> SelectCourseScreen(
+                        child.component
+                    )
+                }
             }
         }
     }

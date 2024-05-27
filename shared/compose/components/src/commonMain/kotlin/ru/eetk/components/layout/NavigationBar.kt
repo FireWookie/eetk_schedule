@@ -1,15 +1,12 @@
 package ru.eetk.components.layout
 
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.NavigationRailItemDefaults
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 
 private val tonalElevation = 0.dp
@@ -19,12 +16,8 @@ fun NavigationBar(
     modifier: Modifier = Modifier,
     content: @Composable RowScope.() -> Unit
 ) {
-    val containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(tonalElevation)
-
     androidx.compose.material3.NavigationBar(
-        modifier = modifier.clip(RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)),
-        containerColor = containerColor,
-        tonalElevation = tonalElevation,
+        modifier = modifier,
         content = content
     )
 }
@@ -39,13 +32,6 @@ fun RowScope.NavigationBarItem(
 ) {
 
     NavigationBarItem(
-        colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = MaterialTheme.colorScheme.onSecondaryContainer,
-            selectedTextColor = MaterialTheme.colorScheme.onSecondaryContainer,
-            unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.45f),
-            unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.45f),
-            indicatorColor = MaterialTheme.colorScheme.surfaceColorAtElevation(tonalElevation)
-        ),
         selected = selected,
         onClick = onClick,
         icon = icon,

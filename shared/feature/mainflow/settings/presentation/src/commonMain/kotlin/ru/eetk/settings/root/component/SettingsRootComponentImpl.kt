@@ -64,7 +64,8 @@ internal class SettingsRootComponentImpl(
     ) = when(config) {
         Config.Design -> SettingsRootComponent.Child.Design(
             buildDesignComponent(
-                componentContext = componentContext
+                componentContext = componentContext,
+                backClick = { navigation.pop() }
             )
         )
         Config.Menu -> SettingsRootComponent.Child.Menu(
@@ -77,12 +78,14 @@ internal class SettingsRootComponentImpl(
         )
         Config.Notification -> SettingsRootComponent.Child.Notification(
             buildNotificationComponent(
-                componentContext = componentContext
+                componentContext = componentContext,
+                backClick = { navigation.pop() }
             )
         )
         Config.Profile -> SettingsRootComponent.Child.Profile(
             buildProfileComponent(
-                componentContext = componentContext
+                componentContext = componentContext,
+                backClick = { navigation.pop() }
             )
         )
     }

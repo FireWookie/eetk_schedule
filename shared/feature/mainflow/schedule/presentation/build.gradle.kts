@@ -17,6 +17,7 @@ kotlin {
 
     sourceSets {
         commonDependencies {
+            implementation(projects.shared.compose.components)
             implementation(projects.shared.compose.resources)
             implementation(projects.shared.compose.theme)
 
