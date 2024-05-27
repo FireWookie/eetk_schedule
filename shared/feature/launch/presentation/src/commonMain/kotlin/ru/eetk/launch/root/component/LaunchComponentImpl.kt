@@ -58,6 +58,7 @@ internal class LaunchComponentImpl(
             buildSelectCourseComponent(
                 componentContext = componentContext,
                 branchUI = config.branch,
+                backClick = { navigation.pop() },
                 onOpenMainFlow = onOpenMainFlow,
             )
         )

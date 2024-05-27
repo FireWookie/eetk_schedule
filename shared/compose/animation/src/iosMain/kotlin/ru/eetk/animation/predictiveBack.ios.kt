@@ -23,7 +23,7 @@ actual fun <C : Any, T : Any> backAnimation(
 ): StackAnimation<C, T> =
     predictiveBackAnimation(
         backHandler = backHandler,
-        fallbackAnimation = stackAnimation(iosLikeSlide()),
+        fallbackAnimation = stackAnim(),
         selector = { initialBackEvent, _, _ ->
             predictiveBackAnimatable(
                 initialBackEvent = initialBackEvent,

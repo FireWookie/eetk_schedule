@@ -2,11 +2,11 @@ package ru.eetk.components.cards
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
@@ -20,12 +20,13 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun BranchCard(
+fun EETKDefaultCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    text: String
+    text: String,
+    cardContent: @Composable (ColumnScope.() -> Unit) =  { cardDefaultContent(text = text) }
 ) {
-    val shape: Shape = RoundedCornerShape(12.dp)
+    val shape: Shape = MaterialTheme.shapes.large
     val colors: CardColors = CardDefaults.cardColors(
         containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
         contentColor = MaterialTheme.colorScheme.onSurface
@@ -33,15 +34,18 @@ fun BranchCard(
     val elevation: CardElevation = CardDefaults.cardElevation()
     Card(
         onClick = onClick,
-        modifier = modifier.height(80.dp).fillMaxWidth().padding(horizontal = 16.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .then(modifier) ,
         elevation = elevation,
         shape = shape,
         colors = colors,
-        content = { cardContent(text = text) }
+        content = cardContent
     )
 }
+
 @Composable
-private fun cardContent(text: String) {
+private fun cardDefaultContent(text: String) {
     Column(
         modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp),
         verticalArrangement = Arrangement.Center,
@@ -49,7 +53,8 @@ private fun cardContent(text: String) {
         content = {
             Text(
                 text = text,
-                style = MaterialTheme.typography.titleMedium)
+                style = MaterialTheme.typography.titleMedium
+            )
         }
     )
 

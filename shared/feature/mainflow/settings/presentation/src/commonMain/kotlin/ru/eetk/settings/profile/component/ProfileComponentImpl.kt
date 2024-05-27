@@ -4,13 +4,16 @@ import com.arkivanov.decompose.ComponentContext
 import org.koin.core.component.KoinComponent
 
 internal fun buildProfileComponent(
-    componentContext: ComponentContext
+    componentContext: ComponentContext,
+    backClick: () -> Unit,
 ): ProfileComponent = ProfileComponentImpl(
-    componentContext = componentContext
+    componentContext = componentContext,
+    backClick = backClick
 )
 
 internal class ProfileComponentImpl(
-    componentContext: ComponentContext
+    componentContext: ComponentContext,
+    private val backClick: () -> Unit
 ): ProfileComponent, ComponentContext by componentContext, KoinComponent {
-
+    override fun onBackClicked() = backClick()
 }
