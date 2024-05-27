@@ -14,3 +14,7 @@ xcuserdata/
 Pods/
 *.jks
 *yarn.lock
+
+.fleet
+.fleet/*
+.fleet/
