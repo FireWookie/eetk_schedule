@@ -27,6 +27,10 @@ kotlin {
             implementation(projects.shared.compose.theme)
             implementation(projects.shared.compose.animation)
 
+            implementation(libs.mvikotlin.extensions)
+            implementation(libs.mvikotlin)
+            implementation(libs.mvikotlin.main)
+
         }
     }
 }

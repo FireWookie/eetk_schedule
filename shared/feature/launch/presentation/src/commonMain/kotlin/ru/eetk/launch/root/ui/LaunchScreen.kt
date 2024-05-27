@@ -1,4 +1,4 @@
-package ru.eetk.launch.root.screen
+package ru.eetk.launch.root.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -9,8 +9,8 @@ import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import ru.eetk.animation.backAnimation
-import ru.eetk.launch.branch.screen.SelectBranchScreen
-import ru.eetk.launch.course.screen.SelectCourseScreen
+import ru.eetk.launch.branch.ui.SelectBranchScreen
+import ru.eetk.launch.course.ui.SelectCourseScreen
 import ru.eetk.launch.root.component.LaunchComponent
 
 @Composable

@@ -17,7 +17,7 @@ import ru.eetk.mainflow.component.MainFlowComponent
 import ru.eetk.mainflow.component.utils.Screen
 import ru.eetk.review.root.screen.ReviewRootScreen
 import ru.eetk.schedule.screen.ScheduleScreen
-import ru.eetk.settings.root.screens.SettingsRootScreen
+import ru.eetk.settings.root.ui.SettingsRootScreen
 
 @OptIn(ExperimentalDecomposeApi::class)
 @Composable

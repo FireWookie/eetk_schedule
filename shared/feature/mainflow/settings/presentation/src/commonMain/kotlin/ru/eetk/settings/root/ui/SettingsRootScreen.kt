@@ -1,12 +1,12 @@
-package ru.eetk.settings.root.screens
+package ru.eetk.settings.root.ui
 
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import ru.eetk.animation.backAnimation
-import ru.eetk.settings.design.screens.DesignScreen
-import ru.eetk.settings.menu.screen.SettingsMenuScreen
-import ru.eetk.settings.notification.screens.NotificationScreen
-import ru.eetk.settings.profile.screens.ProfileScreen
+import ru.eetk.settings.design.ui.DesignScreen
+import ru.eetk.settings.menu.ui.SettingsMenuScreen
+import ru.eetk.settings.notification.ui.NotificationScreen
+import ru.eetk.settings.profile.ui.ProfileScreen
 import ru.eetk.settings.root.component.SettingsRootComponent
 
 @Composable

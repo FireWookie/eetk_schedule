@@ -1,32 +1,25 @@
-package ru.eetk.settings.profile.screens
+package ru.eetk.settings.design.ui
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.compose.stringResource
-import ru.eetk.components.layout.CenteredColumn
 import ru.eetk.components.layout.CenteredTopAppBar
 import ru.eetk.components.layout.EETKColumn
 import ru.eetk.resources.EetkRes
 import ru.eetk.settings.design.component.DesignComponent
-import ru.eetk.settings.profile.component.ProfileComponent
 
 @Composable
-internal fun ProfileScreen(component: ProfileComponent) {
+internal fun DesignScreen(component: DesignComponent) {
     Scaffold(
         topBar = {
             CenteredTopAppBar(
-                text = stringResource(EetkRes.strings.settings_profile),
+                text = stringResource(EetkRes.strings.design),
                 onBackClicked = component::onBackClicked
             )
         },
         content = { insetPadding ->
-            ProfileScreenContent(
+            DesignScreenContent(
                 component = component,
                 insetPadding = insetPadding
             )
@@ -35,8 +28,8 @@ internal fun ProfileScreen(component: ProfileComponent) {
 }
 
 @Composable
-fun ProfileScreenContent(
-    component: ProfileComponent,
+fun DesignScreenContent(
+    component: DesignComponent,
     insetPadding: PaddingValues,
 ) {
     EETKColumn (

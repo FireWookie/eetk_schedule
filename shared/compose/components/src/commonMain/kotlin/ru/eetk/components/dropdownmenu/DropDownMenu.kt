@@ -10,25 +10,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 @Composable
-internal fun DropDownMenu(
-    expanded: State<Boolean>,
-    desc: String = "",
+internal fun <T> DropDownMenu(
+    expanded: Boolean,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
-    selectedItem: State<String>,
-    onChangeItem: (String) -> Unit,
-    listItems: List<String>,
+    selectedItem: T,
+    onChangeItem: (T) -> Unit,
+    listItems: List<T>,
+    itemConvertText: @Composable (T) -> String
 ) {
     DropdownMenu(
-        expanded = expanded.value,
+        expanded = expanded,
         onDismissRequest = onDismissRequest,
         modifier = modifier
     ) {
         listItems.forEach { label ->
             DDMItem(
-                text = "$label $desc",
+                text = itemConvertText(label),
                 onClick = { onChangeItem(label) },
-                selected = selectedItem.value == label
+                selected = selectedItem == label
             )
         }
     }

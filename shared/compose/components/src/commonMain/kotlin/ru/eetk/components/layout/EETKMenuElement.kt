@@ -40,7 +40,7 @@ fun EETKMenuElement(
 fun EETKMenuSwitchElement(
     text: String,
     modifier: Modifier = Modifier,
-    checked: State<Boolean>,
+    checked: Boolean,
     onCheckedChange: (Boolean) -> Unit
 ) {
     EETKMenuElement(
@@ -48,7 +48,7 @@ fun EETKMenuSwitchElement(
         modifier = modifier,
     ) {
         Switch(
-            checked = checked.value,
+            checked = checked,
             onCheckedChange = onCheckedChange
         )
     }

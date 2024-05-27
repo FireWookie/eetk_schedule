@@ -22,16 +22,16 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 
 @Composable
-internal fun DropDownMenuField(
+internal fun <T> DropDownMenuField(
     title: String,
-    desc: String,
-    selectedItem: State<String>,
+    selectedItem: T,
+    itemConvertText: @Composable (T) -> String,
     onClick: () -> Unit,
-    expanded: State<Boolean>
+    expanded: Boolean
 ) {
     val shape = MaterialTheme.shapes.medium
-    val selectedColor = if (expanded.value) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.primary
-    val angle = if (expanded.value) 180f else 0f
+    val selectedColor = if (expanded) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.primary
+    val angle = if (expanded) 180f else 0f
     val animatedAngle by animateFloatAsState(angle)
     Row(
         modifier = Modifier
@@ -44,7 +44,7 @@ internal fun DropDownMenuField(
     ) {
         Text(text = title)
         Spacer(modifier = Modifier.weight(1f))
-        Text(text = "${selectedItem.value} $desc", color = selectedColor)
+        Text(text = itemConvertText(selectedItem), color = selectedColor)
         Icon(
             imageVector = Icons.Outlined.KeyboardArrowDown,
             contentDescription = null,

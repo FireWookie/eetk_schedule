@@ -1,4 +1,4 @@
-package ru.eetk.settings.menu.screen
+package ru.eetk.settings.menu.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

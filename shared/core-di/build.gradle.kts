@@ -22,6 +22,7 @@ kotlin {
             implementation(projects.shared.libraries.datastore)
             implementation(projects.shared.libraries.flow)
             implementation(projects.shared.feature.launch.presentation)
+            implementation(projects.shared.feature.mainflow.settings.presentation)
             implementation(libs.mvikotlin)
             implementation(libs.mvikotlin.main)
         }

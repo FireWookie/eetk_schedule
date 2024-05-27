@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import component.RootComponent
 import ru.eetk.animation.stackAnim
-import ru.eetk.launch.root.screen.LaunchScreen
+import ru.eetk.launch.root.ui.LaunchScreen
 import ru.eetk.mainflow.screen.MainFlowScreen
 import ru.eetk.theme.EETKTheme
 

@@ -5,6 +5,7 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import ru.eetk.launch.launchPresentationModule
+import ru.eetk.settings.settingsPresentationModule
 
 object KoinInjector {
 
@@ -14,7 +15,8 @@ object KoinInjector {
                 platformDataStoreModule,
                 launchPresentationModule,
                 storeModule,
-                flowModule
+                flowModule,
+                settingsPresentationModule
             )
         )
     }

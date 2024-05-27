@@ -2,7 +2,7 @@ package ru.eetk.launch
 
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import org.koin.dsl.module
-import ru.eetk.launch.course.store.CourseStoreFactory
+import ru.eetk.launch.course.component.store.CourseStoreFactory
 
 val launchPresentationModule = module {
     factory {

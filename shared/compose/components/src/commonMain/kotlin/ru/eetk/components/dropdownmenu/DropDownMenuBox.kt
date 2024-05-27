@@ -20,40 +20,45 @@ import androidx.compose.ui.unit.dp
  * */
 
 @Composable
-fun DropDownMenuBox(
+fun <T> DropDownMenuBox(
     title: String,
-    desc: String,
-    expanded: State<Boolean>,
-    selectedItem: State<String>,
-    listItems: List<String>,
+    expanded: Boolean,
+    selectedItem: T,
+    listItems: List<T>,
     onClick: () -> Unit,
-    onDismissRequest: () -> Unit,
-    onChangeItem: (String) -> Unit,
+    onChangeItem: (T) -> Unit,
+    itemConvertText: @Composable (T) -> String,
     ddmField: @Composable () -> Unit = {
         DropDownMenuField(
             title = title,
-            desc = desc,
             expanded = expanded,
             selectedItem = selectedItem,
-            onClick = onClick
+            onClick = onClick,
+            itemConvertText = itemConvertText
         )
     },
     ddm: @Composable () -> Unit = {
         DropDownMenu(
             expanded = expanded,
-            desc = desc,
-            onDismissRequest = onDismissRequest,
+            onDismissRequest = onClick,
             onChangeItem = onChangeItem,
             selectedItem = selectedItem,
-            listItems = listItems
+            listItems = listItems,
+            itemConvertText = itemConvertText
         )
     }
 ) {
-    Column(modifier = Modifier.fillMaxWidth().height(50.dp))
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+    )
     {
         ddmField()
-        Row(modifier = Modifier.padding(top = 10.dp).align(Alignment.End))
-        {
+        Row(
+            modifier = Modifier
+                .align(Alignment.End)
+        ) {
             ddm()
         }
     }
