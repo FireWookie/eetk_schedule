@@ -29,8 +29,8 @@
 
     <string name="dark_theme">Ночная тема</string>
     <string name="system_theme">Системная</string>
-    <string name="dark_off_theme">Выключена</string>
-    <string name="dark_on_theme">Включена</string>
+    <string name="dark_off_theme">Светлая</string>
+    <string name="dark_on_theme">Темная</string>
     <string name="dynamic_colors">Динамические цвета</string>
 
     <string name="change_password">Изменить пароль</string>

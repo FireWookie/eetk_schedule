@@ -1,12 +1,17 @@
 package ru.eetk.mainflow.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.arkivanov.decompose.router.pages.ChildPages
@@ -24,7 +29,7 @@ import ru.eetk.settings.root.ui.SettingsRootScreen
 fun MainFlowScreen(component: MainFlowComponent) {
     val pages by component.pages.subscribeAsState()
     Scaffold(
-        content = { MainFlowContent(pages = pages) },
+        content = { MainFlowContent(pages = pages, it) },
         bottomBar = {
             BottomBarContent(
                 pages = pages,
@@ -36,8 +41,10 @@ fun MainFlowScreen(component: MainFlowComponent) {
 
 @OptIn(ExperimentalDecomposeApi::class)
 @Composable
-internal fun MainFlowContent(pages: ChildPages<*, MainFlowComponent.MainTabs>) {
-    Box {
+internal fun MainFlowContent(pages: ChildPages<*, MainFlowComponent.MainTabs>, padding: PaddingValues) {
+    Box(
+        Modifier.padding(bottom = padding.calculateBottomPadding())
+    ) {
         when (val page = pages.items[pages.selectedIndex].instance) {
             is MainFlowComponent.MainTabs.Review -> ReviewRootScreen(page.component)
             is MainFlowComponent.MainTabs.Schedule -> ScheduleScreen(page.component)

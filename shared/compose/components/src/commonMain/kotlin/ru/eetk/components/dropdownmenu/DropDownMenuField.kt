@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -30,9 +31,7 @@ internal fun <T> DropDownMenuField(
     expanded: Boolean
 ) {
     val shape = MaterialTheme.shapes.medium
-    val selectedColor = if (expanded) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.primary
-    val angle = if (expanded) 180f else 0f
-    val animatedAngle by animateFloatAsState(angle)
+
     Row(
         modifier = Modifier
             .fillMaxSize()
@@ -44,7 +43,21 @@ internal fun <T> DropDownMenuField(
     ) {
         Text(text = title)
         Spacer(modifier = Modifier.weight(1f))
-        Text(text = itemConvertText(selectedItem), color = selectedColor)
+
+        DropDownMenuAnimatedIcon(expanded = expanded, text = itemConvertText(selectedItem))
+    }
+}
+
+@Composable
+internal fun DropDownMenuAnimatedIcon(
+    expanded: Boolean,
+    text: String
+) {
+    val selectedColor = if (expanded) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.primary
+    val angle = if (expanded) 180f else 0f
+    val animatedAngle by animateFloatAsState(angle)
+    Row {
+        Text(text = text, color = selectedColor)
         Icon(
             imageVector = Icons.Outlined.KeyboardArrowDown,
             contentDescription = null,
