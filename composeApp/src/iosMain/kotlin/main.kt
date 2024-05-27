@@ -16,8 +16,7 @@ fun MainViewController(
 ): UIViewController = ComposeUIViewController {
     PredictiveBackGestureOverlay(
         backDispatcher = backDispatcher,
-        backIcon = { progress, _ ->
-        },
+        backIcon = { progress, _ -> },
         modifier = Modifier.fillMaxSize()
     ) {
         RootScreen(component)

@@ -8,7 +8,7 @@ import androidx.compose.runtime.getValue
 import dev.icerock.moko.resources.compose.stringResource
 import ru.eetk.components.layout.CenteredTopAppBar
 import ru.eetk.components.layout.EETKColumn
-import ru.eetk.components.layout.EETKMenuSwitchElement
+import ru.eetk.components.layout.EETKMenuSwitch
 import ru.eetk.resources.EetkRes
 import ru.eetk.settings.notification.component.NotificationComponent
 
@@ -42,12 +42,12 @@ private fun NotificationScreenContent(
     EETKColumn (
         insetPadding = insetPadding
     ) {
-        EETKMenuSwitchElement(
+        EETKMenuSwitch(
             text = stringResource(EetkRes.strings.notification_by_schedule),
             checked = state.notificationBySchedule,
             onCheckedChange = component::onSwitchScheduleState
         )
-        EETKMenuSwitchElement(
+        EETKMenuSwitch(
             text = stringResource(EetkRes.strings.notification_by_changes),
             checked = state.notificationByChanges,
             onCheckedChange = component::onSwitchChangesState

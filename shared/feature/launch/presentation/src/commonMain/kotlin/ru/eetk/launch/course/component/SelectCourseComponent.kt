@@ -8,6 +8,7 @@ import ru.eetk.launch.course.component.store.CourseStore
 interface SelectCourseComponent {
 
     val stateFlow: StateFlow<CourseStore.State>
+
     fun onBackClicked()
 
     fun openMainFlow()
