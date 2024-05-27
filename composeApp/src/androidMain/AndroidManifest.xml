@@ -9,6 +9,7 @@
         <activity
             android:name=".AppActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:enableOnBackInvokedCallback="true"
             android:launchMode="singleInstance"
             android:windowSoftInputMode="adjustPan"
             android:exported="true">

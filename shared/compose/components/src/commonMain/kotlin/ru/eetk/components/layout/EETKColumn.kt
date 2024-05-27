@@ -9,22 +9,24 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun EETKColumn(
     modifier: Modifier = Modifier,
-    insetPadding: PaddingValues = PaddingValues(0.dp),
+    insetPadding: Dp,
+    verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     content:  @Composable (ColumnScope.() -> Unit)
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(top = insetPadding)
             .padding(top = 16.dp)
             .padding(horizontal = 16.dp)
-            .padding(insetPadding)
             .then(modifier),
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = verticalArrangement,
         horizontalAlignment = Alignment.CenterHorizontally,
         content = content
     )

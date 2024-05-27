@@ -5,6 +5,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.unit.Dp
 import dev.icerock.moko.resources.compose.stringResource
 import ru.eetk.components.dropdownmenu.DropDownMenuBox
 import ru.eetk.components.layout.CenteredTopAppBar
@@ -26,7 +27,7 @@ internal fun DesignScreen(component: DesignComponent) {
         content = { insetPadding ->
             DesignScreenContent(
                 component = component,
-                insetPadding = insetPadding
+                insetPadding = insetPadding.calculateTopPadding(),
             )
         }
     )
@@ -35,7 +36,7 @@ internal fun DesignScreen(component: DesignComponent) {
 @Composable
 fun DesignScreenContent(
     component: DesignComponent,
-    insetPadding: PaddingValues,
+    insetPadding: Dp,
 ) {
     val state by component.stateFlow.collectAsState()
     EETKColumn (

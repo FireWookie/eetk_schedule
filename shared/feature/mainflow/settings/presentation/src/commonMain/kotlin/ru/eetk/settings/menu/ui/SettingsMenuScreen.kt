@@ -11,10 +11,12 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.compose.stringResource
 import ru.eetk.components.cards.EETKSettingCard
 import ru.eetk.components.layout.CenteredColumn
+import ru.eetk.components.layout.EETKColumn
 import ru.eetk.components.layout.TitleAppBar
 import ru.eetk.resources.EetkRes
 import ru.eetk.settings.menu.component.SettingsMenuComponent
@@ -26,18 +28,18 @@ internal fun SettingsMenuScreen(
 ) {
     Scaffold(
         topBar = { TitleAppBar(text = stringResource(EetkRes.strings.settings)) },
-        content = { insetPadding -> SettingsMenuContent(component = component, insetPadding = insetPadding) }
+        content = { insetPadding -> SettingsMenuContent(component = component, insetPadding = insetPadding.calculateTopPadding()) }
     )
 }
 
 @Composable
 private fun SettingsMenuContent(
     component: SettingsMenuComponent,
-    insetPadding: PaddingValues
+    insetPadding: Dp
 ) {
     val icons = Icons.Outlined
-    CenteredColumn(
-        modifier = Modifier.padding(insetPadding),
+    EETKColumn(
+        insetPadding = insetPadding,
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
         EETKSettingCard(
