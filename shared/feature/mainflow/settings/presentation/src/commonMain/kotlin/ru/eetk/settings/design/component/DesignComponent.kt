@@ -15,6 +15,6 @@ interface DesignComponent {
 
     fun onChangeDynTheme(state: Boolean)
 
-    fun onChangeThemeItem(theme: StringResource)
+    fun onChangeThemeItem(theme: Pair<Theme, StringResource>)
 
 }

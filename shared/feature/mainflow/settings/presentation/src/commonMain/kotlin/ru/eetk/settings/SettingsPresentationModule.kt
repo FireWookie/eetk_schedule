@@ -13,6 +13,7 @@ val settingsPresentationModule = module {
     factory {
         DesignStoreFactory(
             storeFactory = get(),
+            dataStore = get()
         ).create()
     }
 }

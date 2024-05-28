@@ -11,6 +11,7 @@ import org.koin.core.component.get
 import ru.eetk.persistent.appearance.Theme
 import ru.eetk.settings.design.component.store.DesignStore
 import ru.eetk.settings.design.component.store.DesignStore.*
+import ru.eetk.theme.util.BaseComponent
 
 
 internal fun buildDesignComponent(
@@ -24,7 +25,7 @@ internal class DesignComponentImpl(
     componentContext: ComponentContext,
     private val backClick: () -> Unit
 
-): DesignComponent, ComponentContext by componentContext, KoinComponent {
+): DesignComponent, BaseComponent(componentContext){
 
     private val designStore: DesignStore = instanceKeeper.getStore(::get)
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -40,7 +41,7 @@ internal class DesignComponentImpl(
         designStore.accept(Intent.ChangeDynamicColors)
     }
 
-    override fun onChangeThemeItem(theme: StringResource) {
+    override fun onChangeThemeItem(theme: Pair<Theme, StringResource>) {
         
         designStore.accept(Intent.ChangeSelectedTheme(theme = theme))
     }

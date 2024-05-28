@@ -8,7 +8,7 @@ import ru.eetk.resources.EetkRes
 interface DesignStore : Store<DesignStore.Intent, DesignStore.State, Nothing> {
 
     sealed interface Intent {
-        data class ChangeSelectedTheme(val theme: StringResource): Intent
+        data class ChangeSelectedTheme(val theme: Pair<Theme, StringResource>): Intent
 
         data object ChangeExpanded: Intent
 
@@ -17,26 +17,27 @@ interface DesignStore : Store<DesignStore.Intent, DesignStore.State, Nothing> {
     }
 
     sealed interface Message {
-        data class SelectTheme(val theme: StringResource): Message
+        data class SelectTheme(val theme: Pair<Theme, StringResource>): Message
 
         data object ChangeExpanded: Message
 
         data object ChangeDynamicColors: Message
+
+        data class SelectThemeByFilter(val theme: Theme): Message
     }
 
     data class State(
         val dynamicColors: Boolean = false,
-        val selectedTheme: Int = 0,
-        val themeItems: StringResource = THEME_LIST[selectedTheme],
-        val items: List<StringResource> = THEME_LIST,
+        val selectedTheme: Pair<Theme, StringResource> = THEME_LIST.first(),
+        val items: List<Pair<Theme, StringResource>> = THEME_LIST,
         val expanded: Boolean = false
 
     ) {
         companion object {
             val THEME_LIST = listOf(
-                EetkRes.strings.system_theme,
-                EetkRes.strings.dark_off_theme,
-                EetkRes.strings.dark_on_theme
+                Pair(Theme.System, EetkRes.strings.system_theme),
+                Pair(Theme.Light, EetkRes.strings.dark_off_theme),
+                Pair(Theme.Dark, EetkRes.strings.dark_on_theme)
             )
         }
     }

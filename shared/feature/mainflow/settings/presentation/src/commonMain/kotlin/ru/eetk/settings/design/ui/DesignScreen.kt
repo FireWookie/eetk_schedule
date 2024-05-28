@@ -50,12 +50,12 @@ fun DesignScreenContent(
 
         EETKMenuDropDown(
             title = stringResource(EetkRes.strings.dark_theme),
-            selectedItem = state.themeItems,
+            selectedItem = state.selectedTheme,
             expanded = state.expanded,
             onClick = component::onThemeClicked,
             listItems = state.items,
             onChangeItem = component::onChangeThemeItem,
-            itemConvertText = { stringResource(resource = it) }
+            itemConvertText = { stringResource(resource = it.second) }
         )
     }
 }
