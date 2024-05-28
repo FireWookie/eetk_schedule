@@ -20,20 +20,20 @@ dependencyResolutionManagement {
 
 include(":composeApp")
 
-include(":shared:common-network:api")
-include(":shared:common-network:impl")
-include(":shared:libraries:decompose-main")
-include(":shared:umbrella-ios")
+include(":shared:common-network")
 include(":shared:core-di")
 include(
     ":shared:libraries:coroutines",
     ":shared:libraries:datastore",
-    ":shared:libraries:flow"
+    ":shared:libraries:flow",
+    ":shared:libraries:platform"
 )
-include(":shared:compose:theme")
-include(":shared:compose:components")
-include(":shared:compose:animation")
-include(":shared:compose:resources")
+include(
+    ":shared:compose:theme",
+    ":shared:compose:components",
+    ":shared:compose:animation",
+    ":shared:compose:resources"
+)
 include(
     ":shared:feature:launch:data",
     ":shared:feature:launch:domain",

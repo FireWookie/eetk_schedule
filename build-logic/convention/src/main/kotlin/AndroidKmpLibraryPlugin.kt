@@ -5,9 +5,6 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.dependencies
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import ru.eetk.mobileapp.extension.commonDependencies
 import ru.eetk.mobileapp.internal.kmmExtension
 import ru.eetk.mobileapp.internal.kotlinMultiplatformPluginId
 import ru.eetk.mobileapp.internal.libraryExtension
@@ -19,6 +16,7 @@ class AndroidKmpLibraryPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         apply(plugin = libraryPluginId)
         apply(plugin = kotlinMultiplatformPluginId)
+        pluginManager.apply(libs.plugins.ksp.get().pluginId)
 
         kmmExtension {
             jvmToolchain(17)

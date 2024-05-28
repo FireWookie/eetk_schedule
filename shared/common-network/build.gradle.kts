@@ -1,6 +1,4 @@
-import ru.eetk.mobileapp.extension.androidDependencies
 import ru.eetk.mobileapp.extension.commonDependencies
-import ru.eetk.mobileapp.extension.iosDependencies
 import ru.eetk.mobileapp.extension.iosTarget
 
 plugins {
@@ -13,21 +11,25 @@ android {
 }
 
 kotlin {
-    jvmToolchain(17)
     androidTarget()
     iosTarget()
 
     sourceSets {
         commonDependencies {
-            implementation(projects.shared.commonNetwork)
+            api(libs.jensklingenberg.ktorfit)
+            api(libs.ktor.core)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.serialization.json)
         }
-        androidDependencies {
-            implementation(libs.ktor.client.okhttp)
-        }
-        iosDependencies {
-            implementation(libs.ktor.client.darwin)
-        }
     }
+}
+
+
+dependencies {
+    val ktorfitVersion = libs.versions.ktorfit.asProvider().get()
+    add("kspCommonMainMetadata", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
+    add("kspAndroid", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
+    add("kspIosX64", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
+    add("kspIosArm64", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
+    add("kspIosSimulatorArm64", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
 }

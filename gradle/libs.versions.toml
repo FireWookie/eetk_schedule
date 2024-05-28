@@ -23,6 +23,11 @@ mvikotlin = "4.0.0"
 moko-resources = "0.24.0-beta-5"
 cupertino = "0.1.0-alpha04"
 
+ksp = "2.0.0-1.0.21"
+
+ktorfit = "2.0.0"
+ktorfit-plugin = "2.0.0"
+
 [libraries]
 
 
@@ -80,6 +85,8 @@ android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 moko-resources-generator = { module = "dev.icerock.moko:resources-generator", version.ref = "moko-resources" }
 
+jensklingenberg-ktorfit = { group = "de.jensklingenberg.ktorfit", name = "ktorfit-lib", version.ref = "ktorfit" }
+
 [plugins]
 
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -91,6 +98,11 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
 
+
+ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit-plugin" }
+
 # Convention app
 eetk-compose-multiplatform = { id = "eetk.compose-multiplatform", version = "unspecified" }
 eetk-kmplibrary = { id = "eetk.kmplibrary", version = "unspecified" }
+
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
