@@ -8,10 +8,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 import models.BranchUI
 import ru.eetk.components.cards.EETKBranchCard
-import ru.eetk.components.icons.PeopleIcon
+import ru.eetk.components.icons.EETKIcon
 import ru.eetk.components.layout.CenteredColumn
 import ru.eetk.launch.branch.component.SelectBranchComponent
 import ru.eetk.resources.EetkRes
@@ -24,7 +25,7 @@ internal fun SelectBranchScreen(component: SelectBranchComponent) {
         verticalArrangement = Arrangement
             .spacedBy(50.dp)
     ) {
-        PeopleIcon()
+        EETKIcon(icon = painterResource(EetkRes.images.logo))
         Text(
             text = stringResource(EetkRes.strings.select_branch),
             style = MaterialTheme.typography.headlineLarge

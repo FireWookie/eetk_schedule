@@ -30,10 +30,10 @@ fun EETKMenuElement(
             style = MaterialTheme.typography.titleMedium
         )
     },
-    trailingContent: @Composable () -> Unit = {}
+    trailingContent: @Composable () -> Unit = {},
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth().height(50.dp).padding(horizontal = 10.dp).then(modifier),
+        modifier = Modifier.fillMaxWidth().height(50.dp).then(modifier),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -43,15 +43,35 @@ fun EETKMenuElement(
 }
 
 @Composable
+fun EETKMenuText(
+    leadingText: String,
+    trailingText: String,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+) {
+    EETKMenuElement(
+        text = leadingText,
+        modifier = Modifier
+            .clip(MaterialTheme.shapes.medium)
+            .clickable(onClick = onClick)
+            .padding(horizontal = 10.dp)
+            .then(modifier),
+    ) {
+        Text(text = trailingText)
+    }
+}
+
+@Composable
 fun EETKMenuSwitch(
     text: String,
     modifier: Modifier = Modifier,
     checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
+    onCheckedChange: (Boolean) -> Unit,
 ) {
     EETKMenuElement(
         text = text,
-        modifier = modifier,
+        modifier = modifier
+            .padding(horizontal = 10.dp),
     ) {
         Switch(
             checked = checked,
@@ -69,7 +89,7 @@ fun <T> EETKMenuDropDown(
     listItems: List<T>,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    itemConvertText: @Composable (T) -> String
+    itemConvertText: @Composable (T) -> String,
 ) {
     DropDownMenuBox(
         title = title,
@@ -85,6 +105,7 @@ fun <T> EETKMenuDropDown(
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.medium)
                     .clickable(onClick = onClick)
+                    .padding(horizontal = 10.dp)
                     .then(modifier),
             ) {
                 DropDownMenuAnimatedIcon(

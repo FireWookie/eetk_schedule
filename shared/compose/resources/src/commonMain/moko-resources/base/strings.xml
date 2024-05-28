@@ -15,7 +15,7 @@
 
     <string name="notification">Уведомления</string>
     <string name="design">Оформление</string>
-    <string name="settings_profile">Настройки профиля</string>
+    <string name="settings_profile">Профиль</string>
     <string name="about_app">О приложении</string>
 
     <string name="eetk_review">ЕЭТК Отзывы</string>
@@ -33,7 +33,18 @@
     <string name="dark_on_theme">Темная</string>
     <string name="dynamic_colors">Динамические цвета</string>
 
+    <string name="change_photo">Изменить Фото</string>
+    <string name="username">Никнейм</string>9
+    <string name="mail">Почта</string>
+    <string name="branch">Филиал</string>
     <string name="change_password">Изменить пароль</string>
+    <string name="exit">Выйти</string>
+    <string name="next">далее</string>
+    <string name="apply">применить</string>
+
+    <string name="alert_change_username">Введите новый никнейм на английском языке</string>
+    <string name="alert_change_mail">На старую почту будет прислан код подтверждения</string>
+    <string name="alert_change_mail_code">Введите код, \nприсланный на почту</string>
 
     <string name="schedule">Расписание</string>
     <string name="review">Отзывы</string>
