@@ -20,6 +20,7 @@ kotlin {
             implementation(libs.koin.core)
 
             implementation(projects.shared.persistent)
+            implementation(projects.shared.libraries.datastore)
 
             implementation(projects.shared.libraries.coroutines)
             implementation(projects.shared.libraries.flow)
@@ -31,7 +32,6 @@ kotlin {
 
             implementation(libs.mvikotlin.extensions)
             implementation(libs.mvikotlin)
-            implementation(libs.mvikotlin.main)
 
         }
     }
