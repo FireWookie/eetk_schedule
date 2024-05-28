@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun EETKSettingCard(
     text: String,
-    icon: ImageVector,
+    icon: ImageVector? = null,
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     cardContent: @Composable (ColumnScope.() -> Unit) = { SettingsEETKCardContent(text = text, icon = icon) }
@@ -35,17 +35,19 @@ fun EETKSettingCard(
 )
 
 @Composable
-private fun SettingsEETKCardContent(text: String, icon: ImageVector) {
+private fun SettingsEETKCardContent(text: String, icon: ImageVector?) {
     Row(
         modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = text,
-            modifier = Modifier.size(20.dp),
-        )
+        if (icon != null) {
+            Icon(
+                imageVector = icon,
+                contentDescription = text,
+                modifier = Modifier.size(20.dp),
+            )
+        }
         Spacer(modifier = Modifier.width(10.dp))
         Text(
             text = text,

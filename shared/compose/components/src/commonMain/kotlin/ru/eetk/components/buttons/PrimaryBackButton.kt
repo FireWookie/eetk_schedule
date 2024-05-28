@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun PrimaryBackButton(
     icon: ImageVector = Icons.AutoMirrored.Default.ArrowBack,
-    showBackground: Boolean,
+    showBackground: Boolean = true,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {

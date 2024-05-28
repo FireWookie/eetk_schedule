@@ -12,11 +12,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
-import ru.eetk.components.buttons.PrimaryFilledButton
+import ru.eetk.components.buttons.EETKPrimaryFilledButton
 import ru.eetk.components.buttons.PrimaryBackButton
 import ru.eetk.components.dropdownmenu.DropDownMenuBox
-import ru.eetk.components.icons.PeopleIcon
+import ru.eetk.components.icons.EETKIcon
 import ru.eetk.components.layout.CenteredColumn
 import ru.eetk.launch.course.component.SelectCourseComponent
 import ru.eetk.resources.EetkRes
@@ -36,7 +37,7 @@ internal fun SelectCourseScreen(component: SelectCourseComponent) {
             modifier = Modifier.padding(top = 16.dp),
             verticalArrangement = Arrangement.spacedBy(50.dp)
         ) {
-            PeopleIcon()
+            EETKIcon(icon = painterResource(EetkRes.images.logo))
             Text(
                 text = stringResource(EetkRes.strings.select_course),
                 style = MaterialTheme.typography.headlineLarge
@@ -52,7 +53,7 @@ internal fun SelectCourseScreen(component: SelectCourseComponent) {
                     "${it.first} ${stringResource(resource = it.second).lowercase()}"
                 }
             )
-            PrimaryFilledButton(
+            EETKPrimaryFilledButton(
                 text = stringResource(EetkRes.strings.btn_continue),
                 modifier = Modifier,
                 onClick = component::openMainFlow,
