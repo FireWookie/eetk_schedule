@@ -3,11 +3,9 @@ package ru.eetk.splash.component
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.arkivanov.decompose.ComponentContext
-import com.arkivanov.decompose.router.stack.replaceAll
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import org.koin.core.component.inject
 import ru.eetk.persistent.launch.showLaunch
 import ru.eetk.splash.component.models.SplashResult
@@ -36,7 +34,9 @@ internal class SplashComponentImpl(
     override fun startDelay() {
         mainScope.launch {
             delay(2000)
-            if (!dataStore.data.first().showLaunch) {
+            val showLaunch = dataStore.data.first().showLaunch
+            println("Show launch info: $showLaunch")
+            if (!showLaunch) {
                 openScreen(SplashResult.MainFlow)
             } else {
                 openScreen(SplashResult.Launch)

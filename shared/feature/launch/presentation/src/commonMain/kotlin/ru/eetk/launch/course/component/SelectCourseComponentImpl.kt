@@ -1,7 +1,10 @@
 package ru.eetk.launch.course.component
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.mvikotlin.core.binder.BinderLifecycleMode
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
+import com.arkivanov.mvikotlin.extensions.coroutines.bind
+import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
 import dev.icerock.moko.resources.StringResource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -35,16 +38,26 @@ internal class SelectCourseComponentImpl(
 
     private val courseStore: CourseStore = instanceKeeper.getStore(::get)
     @OptIn(ExperimentalCoroutinesApi::class)
-    override val stateFlow: StateFlow<CourseStore.State> = courseStore.stateFlow
+    override val stateFlow: StateFlow<State> = courseStore.stateFlow
 
-    override fun openMainFlow() {
-        onOpenMainFlow()
+    init {
+        bind(lifecycle, BinderLifecycleMode.CREATE_DESTROY) {
+            courseStore.labels bindTo ::bindStoreLabel
+        }
+    }
+
+    override fun saveData() {
         courseStore.accept(
             Intent.SaveInfoLaunch(
                 college = branchUI.collage,
-                course = stateFlow.value.courseItems.first
             )
         )
+    }
+
+    private fun bindStoreLabel(label: Label) {
+        when(label) {
+            Label.OpenMainFlow -> onOpenMainFlow()
+        }
     }
 
     override fun onDDMDismissRequest() {

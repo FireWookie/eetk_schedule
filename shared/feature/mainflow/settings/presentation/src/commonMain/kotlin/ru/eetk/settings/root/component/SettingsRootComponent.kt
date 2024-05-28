@@ -1,11 +1,10 @@
 package ru.eetk.settings.root.component
 
 import androidx.compose.runtime.Stable
-import com.arkivanov.decompose.Child
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
-import com.arkivanov.essenty.backhandler.BackHandler
 import com.arkivanov.essenty.backhandler.BackHandlerOwner
+import ru.eetk.settings.about_app.component.AboutAppComponent
 import ru.eetk.settings.design.component.DesignComponent
 import ru.eetk.settings.menu.component.SettingsMenuComponent
 import ru.eetk.settings.notification.component.NotificationComponent
@@ -27,5 +26,7 @@ interface SettingsRootComponent: BackHandlerOwner {
         class Notification(val component: NotificationComponent): Child()
 
         class Design(val component: DesignComponent): Child()
+
+        class AboutApp(val component: AboutAppComponent): Child()
     }
 }

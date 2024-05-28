@@ -5,8 +5,8 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
+import com.arkivanov.decompose.router.stack.popTo
 import com.arkivanov.decompose.router.stack.push
-import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.backhandler.BackHandlerOwner
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -15,8 +15,8 @@ import kotlinx.serialization.Serializable
 import models.SelectedTab
 import org.koin.core.component.inject
 import org.koin.core.qualifier.named
-import ru.eetk.coroutines.coroutineScope
 import ru.eetk.libraries.flow.FlowConstants
+import ru.eetk.settings.about_app.component.buildAboutAppComponent
 import ru.eetk.settings.design.component.buildDesignComponent
 import ru.eetk.settings.menu.component.buildSettingsMenuComponent
 import ru.eetk.settings.notification.component.buildNotificationComponent
@@ -49,10 +49,10 @@ internal class SettingsRootComponentImpl(
         )
 
     init {
-        ioScope.launch {
+        mainScope.launch {
             eventFlow.collect {
                 when(it) {
-                    SelectedTab.SettingsTab -> navigation.replaceAll(Config.Menu)
+                    SelectedTab.SettingsTab -> navigation.popTo(0)
                 }
             }
         }
@@ -65,7 +65,7 @@ internal class SettingsRootComponentImpl(
         Config.Design -> SettingsRootComponent.Child.Design(
             buildDesignComponent(
                 componentContext = componentContext,
-                backClick = { navigation.pop() }
+                backClick = ::onBackClicked
             )
         )
         Config.Menu -> SettingsRootComponent.Child.Menu(
@@ -79,13 +79,20 @@ internal class SettingsRootComponentImpl(
         Config.Notification -> SettingsRootComponent.Child.Notification(
             buildNotificationComponent(
                 componentContext = componentContext,
-                backClick = { navigation.pop() }
+                backClick = ::onBackClicked
             )
         )
         Config.Profile -> SettingsRootComponent.Child.Profile(
             buildProfileComponent(
                 componentContext = componentContext,
-                backClick = { navigation.pop() }
+                backClick = ::onBackClicked
+            )
+        )
+
+        Config.AboutApp -> SettingsRootComponent.Child.AboutApp(
+            buildAboutAppComponent(
+                componentContext = componentContext,
+                backClick = ::onBackClicked
             )
         )
     }
@@ -108,5 +115,8 @@ internal class SettingsRootComponentImpl(
 
         @Serializable
         data object Design: Config
+
+        @Serializable
+        data object AboutApp: Config
     }
 }

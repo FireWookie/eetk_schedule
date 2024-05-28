@@ -1,6 +1,5 @@
 package ru.eetk.launch.course.component
 
-import androidx.compose.runtime.State
 import dev.icerock.moko.resources.StringResource
 import kotlinx.coroutines.flow.StateFlow
 import ru.eetk.launch.course.component.store.CourseStore
@@ -11,7 +10,7 @@ interface SelectCourseComponent {
 
     fun onBackClicked()
 
-    fun openMainFlow()
+    fun saveData()
 
     fun onDDMDismissRequest()
 

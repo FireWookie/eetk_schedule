@@ -4,18 +4,12 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import com.arkivanov.mvikotlin.core.store.Reducer
-import com.arkivanov.mvikotlin.core.store.SimpleBootstrapper
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
-import com.arkivanov.mvikotlin.extensions.coroutines.coroutineExecutorFactory
-import dev.icerock.moko.resources.StringResource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import org.jetbrains.skia.Data
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import ru.eetk.persistent.appearance.Theme
@@ -43,8 +37,9 @@ internal class DesignStoreFactory(
 
     }
 
-    private class ExecutorImpl: KoinComponent, CoroutineExecutor<Intent, Action, State, Message, Nothing>() {
-
+    private class ExecutorImpl: KoinComponent,
+        CoroutineExecutor<Intent, Action, State, Message, Nothing>()
+    {
         private val dataStore: DataStore<Preferences> = get()
         override fun executeIntent(intent: Intent) {
             when(intent) {
@@ -81,7 +76,10 @@ internal class DesignStoreFactory(
                 Message.ChangeDynamicColors -> copy(dynamicColors = !dynamicColors)
                 Message.ChangeExpanded -> copy(expanded = !expanded)
                 is Message.SelectTheme -> copy(selectedTheme = msg.theme, expanded = false)
-                is Message.SelectThemeByFilter -> copy(selectedTheme = items.first { it.first == msg.theme }, expanded = false)
+                is Message.SelectThemeByFilter -> copy(
+                    selectedTheme = items.first { it.first == msg.theme },
+                    expanded = false
+                )
             }
     }
 

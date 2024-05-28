@@ -56,7 +56,7 @@ internal fun SelectCourseScreen(component: SelectCourseComponent) {
             EETKPrimaryFilledButton(
                 text = stringResource(EetkRes.strings.btn_continue),
                 modifier = Modifier,
-                onClick = component::openMainFlow,
+                onClick = component::saveData,
             )
         }
     }

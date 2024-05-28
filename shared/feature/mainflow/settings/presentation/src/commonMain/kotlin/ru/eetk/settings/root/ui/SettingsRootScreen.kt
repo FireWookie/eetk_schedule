@@ -3,6 +3,7 @@ package ru.eetk.settings.root.ui
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import ru.eetk.animation.backAnimation
+import ru.eetk.settings.about_app.ui.AboutAppScreen
 import ru.eetk.settings.design.ui.DesignScreen
 import ru.eetk.settings.menu.ui.SettingsMenuScreen
 import ru.eetk.settings.notification.ui.NotificationScreen
@@ -25,6 +26,7 @@ fun SettingsRootScreen(
             is SettingsRootComponent.Child.Menu -> SettingsMenuScreen(child.component)
             is SettingsRootComponent.Child.Notification -> NotificationScreen(child.component)
             is SettingsRootComponent.Child.Profile -> ProfileScreen(child.component)
+            is SettingsRootComponent.Child.AboutApp -> AboutAppScreen(child.component)
         }
     }
 }

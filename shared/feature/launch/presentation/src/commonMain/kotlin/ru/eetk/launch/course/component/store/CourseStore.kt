@@ -4,19 +4,23 @@ import com.arkivanov.mvikotlin.core.store.Store
 import dev.icerock.moko.resources.StringResource
 import ru.eetk.resources.EetkRes
 
-interface CourseStore: Store<CourseStore.Intent, CourseStore.State, Nothing> {
+interface CourseStore: Store<CourseStore.Intent, CourseStore.State, CourseStore.Label> {
     sealed interface Intent {
         data class ChangeSelectedCourse(val item: Pair<Int, StringResource>): Intent
 
         data object ChangeExpanded: Intent
 
-        data class SaveInfoLaunch(val college: Int, val course: Int): Intent
+        data class SaveInfoLaunch(val college: Int): Intent
     }
 
     sealed interface Message {
         data class SelectCourse(val item: Pair<Int, StringResource>): Message
 
         data object ChangeExpanded: Message
+    }
+
+    sealed interface Label {
+        data object OpenMainFlow: Label
     }
 
     data class State(

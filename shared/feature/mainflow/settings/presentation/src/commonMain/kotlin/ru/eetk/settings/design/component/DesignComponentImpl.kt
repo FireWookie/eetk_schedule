@@ -6,11 +6,11 @@ import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
 import dev.icerock.moko.resources.StringResource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.StateFlow
-import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import ru.eetk.persistent.appearance.Theme
 import ru.eetk.settings.design.component.store.DesignStore
-import ru.eetk.settings.design.component.store.DesignStore.*
+import ru.eetk.settings.design.component.store.DesignStore.Intent
+import ru.eetk.settings.design.component.store.DesignStore.State
 import ru.eetk.theme.util.BaseComponent
 
 
@@ -42,7 +42,6 @@ internal class DesignComponentImpl(
     }
 
     override fun onChangeThemeItem(theme: Pair<Theme, StringResource>) {
-        
         designStore.accept(Intent.ChangeSelectedTheme(theme = theme))
     }
 }
