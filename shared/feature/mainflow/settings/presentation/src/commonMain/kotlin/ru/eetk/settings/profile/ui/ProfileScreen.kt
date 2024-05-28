@@ -31,6 +31,7 @@ import ru.eetk.components.layout.EETKMenuDropDown
 import ru.eetk.components.layout.EETKMenuText
 import ru.eetk.resources.EetkRes
 import ru.eetk.settings.profile.component.ProfileComponent
+import ru.eetk.settings.profile.ui.slot.ChildSlotModalBottomSheet
 
 @Composable
 internal fun ProfileScreen(component: ProfileComponent) {
@@ -59,6 +60,15 @@ fun ProfileScreenContent(
     var showDialogEmail by remember { mutableStateOf(false) }
     var showDDM1 by remember { mutableStateOf(false) }
     var showDDM2 by remember { mutableStateOf(false) }
+
+    ChildSlotModalBottomSheet(
+        sheetContentSlotState = component.bottomSheetSlot,
+        onDismiss = component::onDismiss,
+        content = { component ->
+            Text("Ты гей")
+        }
+    )
+
     EETKColumn(
         insetPadding = insetPadding,
         verticalArrangement = Arrangement.SpaceBetween,
@@ -102,7 +112,7 @@ fun ProfileScreenContent(
         }
         EETKSettingCard(
             text = stringResource(EetkRes.strings.change_password),
-            onClick = {}
+            onClick = component::onClickChangePassword
         )
 
 

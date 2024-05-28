@@ -25,8 +25,11 @@ kotlin {
             implementation(projects.shared.libraries.coroutines)
             implementation(projects.shared.libraries.flow)
 
+            implementation(projects.shared.feature.photoSelector)
+
             implementation(projects.shared.compose.resources)
             implementation(projects.shared.compose.components)
+            implementation(projects.shared.compose.componentsSheet)
             implementation(projects.shared.compose.theme)
             implementation(projects.shared.compose.animation)
 

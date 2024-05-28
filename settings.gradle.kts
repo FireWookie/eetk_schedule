@@ -32,13 +32,15 @@ include(
     ":shared:compose:theme",
     ":shared:compose:components",
     ":shared:compose:animation",
-    ":shared:compose:resources"
+    ":shared:compose:resources",
+    ":shared:compose:components-sheet"
 )
 include(
     ":shared:feature:launch:data",
     ":shared:feature:launch:domain",
     ":shared:feature:launch:presentation"
 )
+include(":shared:feature:photo-selector")
 include("shared:feature:root")
 include("shared:feature:splash")
 include(

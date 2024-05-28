@@ -54,7 +54,7 @@ private val Context.executor: Executor
 
 
 /**
- *  @param filenameFormat Формат имени файла.
+ *  @param fileNameFormat Формат имени файла.
  *  @param imageCapture Объект ImageCapture для захвата фотографии.
  *  @param outputDirectory Директория для сохранения изображения.
  *  @param executor Исполнитель для выполнения асинхронных операций.
@@ -63,7 +63,7 @@ private val Context.executor: Executor
  */
 
 private fun takePhoto(
-    filenameFormat: String,
+    fileNameFormat: String,
     imageCapture: ImageCapture,
     outputDirectory: File,
     executor: Executor,
@@ -73,7 +73,7 @@ private fun takePhoto(
 
     val photoFile = File(
         outputDirectory,
-        SimpleDateFormat(filenameFormat, Locale.US).format(System.currentTimeMillis()) + ".jpg"
+        SimpleDateFormat(fileNameFormat, Locale.US).format(System.currentTimeMillis()) + ".jpg"
     )
 
     val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
@@ -156,7 +156,7 @@ actual fun PlatformCamera(
             modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 20.dp),
             onClick = {
                 takePhoto(
-                    filenameFormat = "yyyy-MM-dd-HH-mm-ss-SSS",
+                    fileNameFormat = "yyyy-MM-dd-HH-mm-ss-SSS",
                     imageCapture = imageCapture,
                     outputDirectory = context.getOutputDirectory(),
                     executor = context.executor,
