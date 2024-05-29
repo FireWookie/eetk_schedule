@@ -1,6 +1,10 @@
 package ru.eetk.photo_selector.capture_photo.component
 
-interface CapturePhotoComponent {
+import com.arkivanov.essenty.backhandler.BackHandlerOwner
 
-    fun onCaptureResult(url: String)
+interface CapturePhotoComponent: BackHandlerOwner {
+
+    fun onCaptureResult(byteArray: ByteArray)
+
+    fun onCloseCamera()
 }

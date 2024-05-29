@@ -27,6 +27,10 @@ enum class PermissionState {
         return this != GRANTED
     }
 
+    fun denied(): Boolean {
+        return this == DENIED
+    }
+
     fun granted() : Boolean {
          return this == GRANTED
     }

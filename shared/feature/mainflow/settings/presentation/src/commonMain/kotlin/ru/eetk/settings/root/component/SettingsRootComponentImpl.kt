@@ -7,16 +7,18 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.popTo
 import com.arkivanov.decompose.router.stack.push
+import com.arkivanov.decompose.router.stack.pushToFront
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.backhandler.BackHandlerOwner
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
-import models.SelectedTab
+import ru.eetk.libraries.flow.models.SelectedTab
 import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import ru.eetk.libraries.flow.FlowConstants
 import ru.eetk.photo_selector.capture_photo.component.buildCapturePhotoComponent
+import ru.eetk.photo_selector.menu.component.buildPhotoMenuComponent
 import ru.eetk.settings.about_app.component.buildAboutAppComponent
 import ru.eetk.settings.design.component.buildDesignComponent
 import ru.eetk.settings.menu.component.buildSettingsMenuComponent
@@ -86,8 +88,7 @@ internal class SettingsRootComponentImpl(
         Config.Profile -> SettingsRootComponent.Child.Profile(
             buildProfileComponent(
                 componentContext = componentContext,
-                backClick = ::onBackClicked,
-                cameraClick = { navigation.push(Config.Camera) }
+                backClick = ::onBackClicked
             )
         )
 
@@ -95,15 +96,6 @@ internal class SettingsRootComponentImpl(
             buildAboutAppComponent(
                 componentContext = componentContext,
                 backClick = ::onBackClicked
-            )
-        )
-
-        Config.Camera -> SettingsRootComponent.Child.Camera(
-            buildCapturePhotoComponent(
-                componentContext = componentContext,
-                onResult = {
-                    navigation.pop()
-                }
             )
         )
     }
@@ -129,8 +121,5 @@ internal class SettingsRootComponentImpl(
 
         @Serializable
         data object AboutApp: Config
-
-        @Serializable
-        data object Camera: Config
     }
 }

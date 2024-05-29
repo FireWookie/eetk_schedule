@@ -6,12 +6,14 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.sharp.ArrowBack
 import androidx.compose.material.icons.sharp.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -27,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import kotlinx.cinterop.CValue
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.ObjCAction
+import kotlinx.cinterop.addressOf
+import kotlinx.cinterop.usePinned
 import platform.AVFoundation.AVCaptureDevice
 import platform.AVFoundation.AVCaptureDeviceDiscoverySession
 import platform.AVFoundation.AVCaptureDeviceInput
@@ -54,6 +58,7 @@ import platform.AVFoundation.fileDataRepresentation
 import platform.AssetsLibrary.ALAssetOrientation
 import platform.AssetsLibrary.ALAssetsLibrary
 import platform.CoreGraphics.CGRect
+import platform.Foundation.NSData
 import platform.Foundation.NSError
 import platform.Foundation.NSNotification
 import platform.Foundation.NSNotificationCenter
@@ -64,8 +69,10 @@ import platform.UIKit.UIDevice
 import platform.UIKit.UIDeviceOrientation
 import platform.UIKit.UIDeviceOrientationDidChangeNotification
 import platform.UIKit.UIImage
+import platform.UIKit.UIImagePNGRepresentation
 import platform.UIKit.UIView
 import platform.darwin.NSObject
+import platform.posix.memcpy
 
 private val deviceTypes = listOf(
     AVCaptureDeviceTypeBuiltInWideAngleCamera,
@@ -75,14 +82,26 @@ private val deviceTypes = listOf(
     AVCaptureDeviceTypeBuiltInDuoCamera
 )
 
+@OptIn(ExperimentalForeignApi::class)
+private inline fun NSData.toByteArray(): ByteArray {
+    val size = length.toInt()
+    val byteArray = ByteArray(size)
+    if (size > 0) {
+        byteArray.usePinned { pinned ->
+            memcpy(pinned.addressOf(0), this.bytes, this.length)
+        }
+    }
+    return byteArray
+}
 
 @Composable
 actual fun PlatformCamera(
     modifier: Modifier,
-    photo: (String) -> Unit
+    onBack: () -> Unit,
+    photo: (ByteArray) -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
-        AuthorizedCamera(photo)
+        AuthorizedCamera(photo, onBack)
     }
 
 }
@@ -90,7 +109,8 @@ actual fun PlatformCamera(
 
 @Composable
 private fun BoxScope.AuthorizedCamera(
-    photo: (String) -> Unit
+    photo: (ByteArray) -> Unit,
+    onBack: () -> Unit,
 ) {
     val camera: AVCaptureDevice? = remember {
         AVCaptureDeviceDiscoverySession.discoverySessionWithDeviceTypes(
@@ -100,7 +120,7 @@ private fun BoxScope.AuthorizedCamera(
         ).devices.firstOrNull() as? AVCaptureDevice
     }
     if (camera != null) {
-        RealDeviceCamera(camera, photo)
+        RealDeviceCamera(camera, photo, onBack)
     } else {
         Text(
             """
@@ -115,7 +135,8 @@ private fun BoxScope.AuthorizedCamera(
 @Composable
 private fun BoxScope.RealDeviceCamera(
     camera: AVCaptureDevice,
-    photo: (String) -> Unit
+    photo: (ByteArray) -> Unit,
+    onBack: () -> Unit,
 ) {
     val capturePhotoOutput = remember { AVCapturePhotoOutput() }
     var actualOrientation by remember {
@@ -136,20 +157,17 @@ private fun BoxScope.RealDeviceCamera(
                 if (photoData != null) {
 
                     val uiImage = UIImage(photoData)
-                    ALAssetsLibrary().writeImageToSavedPhotosAlbum(
-                        uiImage.CGImage,
-                        ALAssetOrientation.byValue(uiImage.imageOrientation.value)
-                    ) { url,error ->
-                        photo(url?.path.orEmpty())
-                    }
+                    val imageData = UIImagePNGRepresentation(uiImage)
+                    val byteArray: ByteArray? = imageData?.toByteArray()
+                    photo(byteArray!!)
+//                    ALAssetsLibrary().writeImageToSavedPhotosAlbum(
+//                        uiImage.CGImage,
+//                        ALAssetOrientation.byValue(uiImage.imageOrientation.value)
+//                    ) { url,error ->
+//                        photo(url?.path.orEmpty())
+//                    }
 
-//                    UIImageWriteToSavedPhotosAlbum(
-//                        image = uiImage,
-//                        completionTarget = null,
-//                        completionSelector = null,
-//                        contextInfo = null
-//                    )
-                    //TODO ADD URI
+//
                 }
                 capturePhotoStarted = false
             }
@@ -263,6 +281,25 @@ private fun BoxScope.RealDeviceCamera(
                     .size(100.dp)
                     .padding(1.dp)
                     .border(1.dp, Color.White, CircleShape)
+            )
+        }
+    )
+
+    IconButton(
+        enabled = !capturePhotoStarted,
+        modifier = Modifier
+            .align(Alignment.TopStart)
+            .padding(start = 20.dp)
+            .systemBarsPadding(),
+        onClick = onBack,
+        content = {
+            Icon(
+                imageVector = Icons.Sharp.ArrowBack,
+                contentDescription = "Back",
+                tint = Color.White,
+                modifier = Modifier
+                    .size(100.dp)
+                    .padding(1.dp)
             )
         }
     )

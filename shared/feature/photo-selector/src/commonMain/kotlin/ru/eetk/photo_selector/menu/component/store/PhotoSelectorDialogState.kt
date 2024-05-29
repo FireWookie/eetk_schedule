@@ -1,4 +1,4 @@
-package ru.eetk.photo_selector.root.component.store
+package ru.eetk.photo_selector.menu.component.store
 
 import ru.eetk.compose_sheets.utils.BottomSheetContentState
 

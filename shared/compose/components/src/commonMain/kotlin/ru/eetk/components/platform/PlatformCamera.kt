@@ -11,5 +11,6 @@ import androidx.compose.ui.Modifier
 @Composable
 expect fun PlatformCamera(
     modifier: Modifier,
-    photo: (String) -> Unit
+    onBack: () -> Unit,
+    photo: (ByteArray) -> Unit
 )

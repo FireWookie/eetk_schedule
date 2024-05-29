@@ -4,6 +4,10 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>For capture photo in gallery</string>
+	<key>NSCameraUsageDescription</key>
+	<string>For capture your face</string>
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>RU</string>

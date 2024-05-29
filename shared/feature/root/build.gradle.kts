@@ -19,9 +19,12 @@ kotlin {
         commonDependencies {
             implementation(projects.shared.feature.launch.presentation)
             implementation(projects.shared.feature.mainflow.root)
+            implementation(projects.shared.feature.photoSelector)
+
             implementation(projects.shared.feature.splash)
             implementation(projects.shared.persistent)
             implementation(projects.shared.libraries.coroutines)
+            implementation(projects.shared.libraries.flow)
             
 //            Import Theme
             implementation(projects.shared.compose.theme)

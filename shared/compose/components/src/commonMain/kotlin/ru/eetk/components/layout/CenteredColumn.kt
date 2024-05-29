@@ -15,13 +15,18 @@ fun CenteredColumn(
     modifier: Modifier = Modifier,
     verticalArrangement: Arrangement. Vertical = Arrangement.Center,
     horizontalAlignment: Alignment. Horizontal = Alignment.CenterHorizontally,
+    isMaxSize: Boolean = true,
     content: @Composable() (ColumnScope.() -> Unit)
 ) {
+    val mod: Modifier
+
+    if(isMaxSize) {
+        mod = modifier.fillMaxSize().padding(horizontal = 16.dp).then(modifier)
+    } else {
+        mod = modifier.padding(horizontal = 16.dp).then(modifier)
+    }
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp)
-            .then(modifier),
+        modifier = mod,
         verticalArrangement = verticalArrangement,
         horizontalAlignment = horizontalAlignment,
         content = content

@@ -6,44 +6,66 @@ import com.arkivanov.decompose.router.slot.SlotNavigation
 import com.arkivanov.decompose.router.slot.activate
 import com.arkivanov.decompose.router.slot.childSlot
 import com.arkivanov.decompose.router.slot.dismiss
-import com.arkivanov.decompose.router.stack.ChildStack
-import com.arkivanov.decompose.router.stack.StackNavigation
-import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
-import com.arkivanov.essenty.backhandler.BackCallback
-import kotlinx.serialization.Serializable
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import org.koin.core.qualifier.named
 import ru.eetk.compose_sheets.utils.BottomSheetContentComponent
-import ru.eetk.photo_selector.capture_photo.component.buildCapturePhotoComponent
-import ru.eetk.photo_selector.root.component.buildPhotoSelectorComponent
+import ru.eetk.libraries.flow.FlowConstants
+import ru.eetk.libraries.flow.models.CaptureData
+import ru.eetk.photo_selector.menu.component.buildPhotoMenuComponent
 import ru.eetk.settings.profile.component.config.RootBottomSheetConfig
-import ru.eetk.settings.root.component.SettingsRootComponent
-import ru.eetk.settings.root.component.SettingsRootComponentImpl
+import ru.eetk.theme.util.BaseComponent
 
 internal fun buildProfileComponent(
     componentContext: ComponentContext,
     backClick: () -> Unit,
-    cameraClick: () -> Unit
 ): ProfileComponent = ProfileComponentImpl(
     componentContext = componentContext,
     backClick = backClick,
-    cameraClick = cameraClick
 )
 
 internal class ProfileComponentImpl(
     componentContext: ComponentContext,
     private val backClick: () -> Unit,
-    private val cameraClick: () -> Unit
-): ProfileComponent, ComponentContext by componentContext, KoinComponent {
+): ProfileComponent, BaseComponent(componentContext = componentContext), KoinComponent {
 
-    override fun onOpenCamera() = cameraClick()
+    private val captureFlow: MutableSharedFlow<CaptureData> by inject(named(FlowConstants.ROOT_FLOW_EVENT))
+
+    init {
+        collectFlowData()
+    }
+
+    override fun onOpenCamera() {
+        onDismiss()
+    }
 
     override fun onDismiss() {
         bottomSheetSlotNavigation.dismiss()
     }
 
-    override fun onClickChangePassword() {
+    override fun onClickChangePhoto() {
         bottomSheetSlotNavigation.activate(RootBottomSheetConfig.PhotoSelectorScreen)
+    }
+
+    override fun onClickChangePassword() {
+
+    }
+
+    private fun collectFlowData() {
+        ioScope.launch {
+            captureFlow
+                .distinctUntilChanged()
+                .collectLatest {
+                    when(it) {
+                        is CaptureData.PhotoResult -> println("Result collected here")
+                    }
+                }
+        }
     }
 
     private val bottomSheetSlotNavigation = SlotNavigation<RootBottomSheetConfig>()
@@ -63,8 +85,9 @@ internal class ProfileComponentImpl(
     ): BottomSheetContentComponent {
         return when (config) {
             RootBottomSheetConfig.PhotoSelectorScreen -> {
-                buildPhotoSelectorComponent(
-                    componentContext = componentContext
+                buildPhotoMenuComponent(
+                    componentContext = componentContext,
+                    closeMenu = ::onDismiss
                 )
             }
         }

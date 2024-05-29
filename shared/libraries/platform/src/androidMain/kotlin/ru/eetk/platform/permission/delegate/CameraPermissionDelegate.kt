@@ -3,7 +3,7 @@ package ru.eetk.platform.permission.delegate
 import android.Manifest
 import android.app.Activity
 import android.content.Context
-import ru.eetk.di.KoinInjector
+import org.koin.core.component.inject
 
 import ru.eetk.platform.permission.checkPermissions
 import ru.eetk.platform.permission.openAppSettingsPage
@@ -13,10 +13,10 @@ import ru.eetk.platform.permission.model.PermissionState
 import ru.eetk.platform.permission.util.PermissionRequestException
 
 actual class CameraPermissionDelegate : PermissionDelegate {
-    private val context by KoinInjector.koin.inject<Context>()
+    private val context by inject<Context>()
 
     private fun activity(): Activity {
-        val temp: Activity by KoinInjector.koin.inject()
+        val temp: Activity by inject()
         return temp
     }
 

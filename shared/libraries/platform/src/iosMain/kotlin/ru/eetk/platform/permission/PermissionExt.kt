@@ -19,7 +19,7 @@ fun openNSUrl(string: String) {
 }
 
 /**
- * Функция для открытия настроек приложения на IOS
+ * Функция для перехода в настройки приложения
  */
 internal fun openAppSettingsPage() {
     openNSUrl(UIApplicationOpenSettingsURLString)

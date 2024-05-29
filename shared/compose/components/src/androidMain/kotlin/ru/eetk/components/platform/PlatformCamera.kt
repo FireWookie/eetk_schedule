@@ -1,11 +1,14 @@
 package ru.eetk.components.platform
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.net.Uri
 import android.view.ViewGroup
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCapture.OnImageCapturedCallback
 import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
@@ -18,6 +21,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.sharp.ArrowBack
 import androidx.compose.material.icons.sharp.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -31,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.launch
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -67,8 +72,8 @@ private fun takePhoto(
     imageCapture: ImageCapture,
     outputDirectory: File,
     executor: Executor,
-    onImageCaptured: (Uri) -> Unit,
-    onError: (ImageCaptureException) -> Unit
+    onImageCaptured: (ByteArray?) -> Unit,
+    onError: (ImageCaptureException) -> Unit,
 ) {
 
     val photoFile = File(
@@ -78,17 +83,16 @@ private fun takePhoto(
 
     val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
-    imageCapture.takePicture(outputOptions, executor, object : ImageCapture.OnImageSavedCallback {
-        override fun onError(exception: ImageCaptureException) {
-            println(exception)
-            onError(exception)
+    class ImageCaptureCallback(
+        val onCapture: (byteArray: ByteArray?) -> Unit
+    ): OnImageCapturedCallback() {
+        override fun onCaptureSuccess(image: ImageProxy) {
+            val imageBytes = image.toByteArray()
+            onCapture(imageBytes)
         }
+    }
 
-        override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-            val savedUri = Uri.fromFile(photoFile)
-            onImageCaptured(savedUri)
-        }
-    })
+    imageCapture.takePicture(executor, ImageCaptureCallback(onImageCaptured))
 }
 
 /**
@@ -97,7 +101,7 @@ private fun takePhoto(
  */
 private fun Context.getOutputDirectory(): File {
     val mediaDir = externalCacheDirs.firstOrNull()?.let {
-        File(it, "talkapp").apply { mkdirs() }
+        File(it, "eetk_app").apply { mkdirs() }
     }
 
     return if (mediaDir != null && mediaDir.exists()) mediaDir else filesDir
@@ -106,7 +110,8 @@ private fun Context.getOutputDirectory(): File {
 @Composable
 actual fun PlatformCamera(
     modifier: Modifier,
-    photo: (String) -> Unit
+    onBack: () -> Unit,
+    photo: (ByteArray) -> Unit
 ) {
 
     val scaleType: PreviewView.ScaleType = PreviewView.ScaleType.FILL_CENTER
@@ -161,7 +166,7 @@ actual fun PlatformCamera(
                     outputDirectory = context.getOutputDirectory(),
                     executor = context.executor,
                     onImageCaptured = {
-                        photo(it.toString())
+                        photo(it!!)
                     },
                     onError = {
                         println()
@@ -180,7 +185,39 @@ actual fun PlatformCamera(
                 )
             }
         )
+
+        IconButton(
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(start = 20.dp),
+            onClick = onBack,
+            content = {
+                Icon(
+                    imageVector = Icons.Sharp.ArrowBack,
+                    contentDescription = "Back",
+                    tint = Color.White,
+                    modifier = Modifier
+                        .size(100.dp)
+                        .padding(1.dp)
+                )
+            }
+        )
     }
+}
 
+private fun ImageProxy.toByteArray(): ByteArray {
+    val rotationDegrees = imageInfo.rotationDegrees
+    val bitmap = toBitmap()
 
+    // Rotate the image if necessary
+    val rotatedData = bitmap.toByteArray()
+    close()
+
+    return rotatedData
+}
+
+private fun Bitmap.toByteArray(): ByteArray {
+    val stream = ByteArrayOutputStream()
+    this.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+    return stream.toByteArray()
 }

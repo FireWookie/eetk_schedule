@@ -18,11 +18,10 @@ kotlin {
         commonDependencies {
             implementation(libs.koin.core)
 
-            implementation(projects.shared.coreDi)
         }
 
         androidDependencies {
-            implementation("androidx.core:core-ktx:1.12.0")
+            implementation(libs.androidx.core)
         }
     }
 }

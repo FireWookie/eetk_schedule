@@ -22,6 +22,12 @@ kotlin {
             implementation(projects.shared.compose.resources)
             implementation(projects.shared.compose.theme)
 
+            implementation(projects.shared.libraries.platform)
+            implementation(projects.shared.libraries.flow)
+
+            implementation(libs.mvikotlin)
+            implementation(libs.mvikotlin.extensions)
+
             implementation(libs.koin.core)
         }
     }

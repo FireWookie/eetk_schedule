@@ -11,13 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-/**
- * Composable кнопка EETKButton с background surfaceContainerHighest
- * @param modifier модификатор который можно повесить на кнопку
- * @param text параметр который отвечает за отображение текста внутри кнопки, тип String
- * @param icon иконка которая распологается рядом с текстом, тип ImageVector
- * @param onClick возвращает event при нажатии на кнопку
- * */
 
 @Composable
 fun <T> DropDownMenuBox(

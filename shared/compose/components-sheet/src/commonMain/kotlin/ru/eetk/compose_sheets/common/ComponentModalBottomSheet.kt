@@ -142,10 +142,7 @@ fun ComponentModalBottomSheet(
 
     if (childInstance != null) {
         ModalBottomSheet(
-            onDismissRequest = {
-                // пока неясно, какую пользу можно извлечь из этого коллбека
-                log("$key: onDismissRequest")
-            },
+            onDismissRequest = onDismiss,
             modifier = modifier,
             sheetState = sheetState,
             sheetMaxWidth = sheetMaxWidth,

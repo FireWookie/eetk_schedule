@@ -21,4 +21,6 @@ interface ProfileComponent {
 
     fun onOpenCamera()
 
+    fun onClickChangePhoto()
+
 }

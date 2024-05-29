@@ -19,7 +19,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.arkivanov.decompose.extensions.compose.stack.Children
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 import ru.eetk.components.buttons.EETKExitFilledButton
@@ -31,9 +30,8 @@ import ru.eetk.components.layout.EETKColumn
 import ru.eetk.components.layout.EETKMenuDropDown
 import ru.eetk.components.layout.EETKMenuText
 import ru.eetk.compose_sheets.slot.ChildSlotModalBottomSheet
-import ru.eetk.photo_selector.capture_photo.ui.CapturePhotoScreen
-import ru.eetk.photo_selector.root.component.PhotoSelectorComponent
-import ru.eetk.photo_selector.root.ui.PhotoSelectorScreen
+import ru.eetk.photo_selector.menu.component.PhotoMenuComponent
+import ru.eetk.photo_selector.menu.component.ui.PhotoMenuScreen
 import ru.eetk.resources.EetkRes
 import ru.eetk.settings.profile.component.ProfileComponent
 
@@ -69,7 +67,7 @@ internal fun ProfileScreenContent(
         sheetContentSlotState = component.bottomSheetSlot,
         onDismiss = component::onDismiss,
         content = { component ->
-            PhotoSelectorScreen(component = component as PhotoSelectorComponent)
+            PhotoMenuScreen(component = component as PhotoMenuComponent)
         }
     )
 
@@ -80,7 +78,7 @@ internal fun ProfileScreenContent(
     ) {
         ChangePhoto(
             photo = painterResource(EetkRes.images.profile_template),
-            onClick = { }
+            onClick = component::onClickChangePhoto
         )
         Column(
             verticalArrangement = Arrangement.spacedBy(15.dp)
@@ -116,7 +114,7 @@ internal fun ProfileScreenContent(
         }
         EETKSettingCard(
             text = stringResource(EetkRes.strings.change_password),
-            onClick = component::onClickChangePassword
+            onClick = {}
         )
 
 

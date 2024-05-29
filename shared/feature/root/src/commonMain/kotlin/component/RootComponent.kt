@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 import ru.eetk.launch.root.component.LaunchComponent
 import ru.eetk.mainflow.component.MainFlowComponent
 import ru.eetk.persistent.appearance.Theme
+import ru.eetk.photo_selector.capture_photo.component.CapturePhotoComponent
 import ru.eetk.splash.component.SplashComponent
 
 interface RootComponent {
@@ -18,5 +19,7 @@ interface RootComponent {
         class MainFlow(val component: MainFlowComponent): Child()
 
         class Splash(val component: SplashComponent): Child()
+
+        class Camera(val component: CapturePhotoComponent): Child()
     }
 }

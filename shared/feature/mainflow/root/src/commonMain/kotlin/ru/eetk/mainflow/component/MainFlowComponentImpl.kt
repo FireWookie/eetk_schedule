@@ -12,7 +12,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
-import models.SelectedTab
+import ru.eetk.libraries.flow.models.SelectedTab
 import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import ru.eetk.coroutines.coroutineScope
