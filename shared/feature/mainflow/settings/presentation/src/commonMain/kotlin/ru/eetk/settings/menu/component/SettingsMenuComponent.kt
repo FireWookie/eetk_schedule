@@ -7,4 +7,6 @@ interface SettingsMenuComponent {
     fun onNotificationClick()
 
     fun onDesignClick()
+
+    fun onAboutAppClick()
 }

@@ -73,7 +73,8 @@ internal class SettingsRootComponentImpl(
                 componentContext = componentContext,
                 profileClick = { navigation.push(Config.Profile) },
                 designClick = { navigation.push(Config.Design) },
-                notificationClick = { navigation.push(Config.Notification) }
+                notificationClick = { navigation.push(Config.Notification) },
+                aboutAppClick = { navigation.push(Config.AboutApp)}
             )
         )
         Config.Notification -> SettingsRootComponent.Child.Notification(

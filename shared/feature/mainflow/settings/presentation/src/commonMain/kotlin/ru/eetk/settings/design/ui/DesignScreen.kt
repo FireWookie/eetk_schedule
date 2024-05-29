@@ -1,13 +1,11 @@
 package ru.eetk.settings.design.ui
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.Dp
 import dev.icerock.moko.resources.compose.stringResource
-import ru.eetk.components.dropdownmenu.DropDownMenuBox
 import ru.eetk.components.layout.CenteredTopAppBar
 import ru.eetk.components.layout.EETKColumn
 import ru.eetk.components.layout.EETKMenuDropDown
