@@ -4,6 +4,7 @@ import androidx.compose.runtime.Stable
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.backhandler.BackHandlerOwner
+import ru.eetk.photo_selector.capture_photo.component.CapturePhotoComponent
 import ru.eetk.settings.about_app.component.AboutAppComponent
 import ru.eetk.settings.design.component.DesignComponent
 import ru.eetk.settings.menu.component.SettingsMenuComponent
@@ -28,5 +29,7 @@ interface SettingsRootComponent: BackHandlerOwner {
         class Design(val component: DesignComponent): Child()
 
         class AboutApp(val component: AboutAppComponent): Child()
+
+        class Camera(val component: CapturePhotoComponent): Child()
     }
 }

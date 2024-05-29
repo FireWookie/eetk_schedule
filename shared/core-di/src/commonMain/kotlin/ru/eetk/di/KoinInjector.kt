@@ -5,6 +5,8 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import ru.eetk.launch.launchPresentationModule
+import ru.eetk.platform.permission.corePermissionModule
+import ru.eetk.platform.permission.platformPermissionModule
 import ru.eetk.settings.settingsPresentationModule
 
 object KoinInjector {
@@ -16,7 +18,9 @@ object KoinInjector {
                 launchPresentationModule,
                 storeModule,
                 flowModule,
-                settingsPresentationModule
+                settingsPresentationModule,
+                corePermissionModule,
+                platformPermissionModule
             )
         )
     }

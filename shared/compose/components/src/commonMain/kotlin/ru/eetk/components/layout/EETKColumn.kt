@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun EETKColumn(
     modifier: Modifier = Modifier,
-    insetPadding: Dp,
+    insetPadding: Dp = 0.dp,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     content:  @Composable (ColumnScope.() -> Unit)
 ) {

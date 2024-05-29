@@ -16,6 +16,7 @@ import models.SelectedTab
 import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import ru.eetk.libraries.flow.FlowConstants
+import ru.eetk.photo_selector.capture_photo.component.buildCapturePhotoComponent
 import ru.eetk.settings.about_app.component.buildAboutAppComponent
 import ru.eetk.settings.design.component.buildDesignComponent
 import ru.eetk.settings.menu.component.buildSettingsMenuComponent
@@ -85,7 +86,8 @@ internal class SettingsRootComponentImpl(
         Config.Profile -> SettingsRootComponent.Child.Profile(
             buildProfileComponent(
                 componentContext = componentContext,
-                backClick = ::onBackClicked
+                backClick = ::onBackClicked,
+                cameraClick = { navigation.push(Config.Camera) }
             )
         )
 
@@ -93,6 +95,15 @@ internal class SettingsRootComponentImpl(
             buildAboutAppComponent(
                 componentContext = componentContext,
                 backClick = ::onBackClicked
+            )
+        )
+
+        Config.Camera -> SettingsRootComponent.Child.Camera(
+            buildCapturePhotoComponent(
+                componentContext = componentContext,
+                onResult = {
+                    navigation.pop()
+                }
             )
         )
     }
@@ -118,5 +129,8 @@ internal class SettingsRootComponentImpl(
 
         @Serializable
         data object AboutApp: Config
+
+        @Serializable
+        data object Camera: Config
     }
 }

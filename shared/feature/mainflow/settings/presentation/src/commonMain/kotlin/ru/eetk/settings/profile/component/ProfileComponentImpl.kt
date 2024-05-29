@@ -6,32 +6,37 @@ import com.arkivanov.decompose.router.slot.SlotNavigation
 import com.arkivanov.decompose.router.slot.activate
 import com.arkivanov.decompose.router.slot.childSlot
 import com.arkivanov.decompose.router.slot.dismiss
+import com.arkivanov.decompose.router.stack.ChildStack
+import com.arkivanov.decompose.router.stack.StackNavigation
+import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.backhandler.BackCallback
+import kotlinx.serialization.Serializable
 import org.koin.core.component.KoinComponent
 import ru.eetk.compose_sheets.utils.BottomSheetContentComponent
+import ru.eetk.photo_selector.capture_photo.component.buildCapturePhotoComponent
 import ru.eetk.photo_selector.root.component.buildPhotoSelectorComponent
 import ru.eetk.settings.profile.component.config.RootBottomSheetConfig
+import ru.eetk.settings.root.component.SettingsRootComponent
+import ru.eetk.settings.root.component.SettingsRootComponentImpl
 
 internal fun buildProfileComponent(
     componentContext: ComponentContext,
     backClick: () -> Unit,
+    cameraClick: () -> Unit
 ): ProfileComponent = ProfileComponentImpl(
     componentContext = componentContext,
-    backClick = backClick
+    backClick = backClick,
+    cameraClick = cameraClick
 )
 
 internal class ProfileComponentImpl(
     componentContext: ComponentContext,
     private val backClick: () -> Unit,
+    private val cameraClick: () -> Unit
 ): ProfileComponent, ComponentContext by componentContext, KoinComponent {
 
-    private val backCallback = BackCallback {
-        val child = bottomSheetSlot.value.child
-        if (child != null && child.instance.bottomSheetContentState.value.isDismissAllowed) {
-            bottomSheetSlotNavigation.dismiss()
-        }
-    }
+    override fun onOpenCamera() = cameraClick()
 
     override fun onDismiss() {
         bottomSheetSlotNavigation.dismiss()
@@ -58,7 +63,9 @@ internal class ProfileComponentImpl(
     ): BottomSheetContentComponent {
         return when (config) {
             RootBottomSheetConfig.PhotoSelectorScreen -> {
-                buildPhotoSelectorComponent(componentContext = componentContext)
+                buildPhotoSelectorComponent(
+                    componentContext = componentContext
+                )
             }
         }
     }
