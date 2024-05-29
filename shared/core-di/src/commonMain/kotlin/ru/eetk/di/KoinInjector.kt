@@ -6,6 +6,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import ru.eetk.launch.launchPresentationModule
 import ru.eetk.settings.settingsPresentationModule
+import ru.eetk.schedule.schedulePresentationModule
 
 object KoinInjector {
 
@@ -16,7 +17,8 @@ object KoinInjector {
                 launchPresentationModule,
                 storeModule,
                 flowModule,
-                settingsPresentationModule
+                settingsPresentationModule,
+                schedulePresentationModule,
             )
         )
     }

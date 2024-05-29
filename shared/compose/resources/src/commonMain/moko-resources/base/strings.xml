@@ -12,6 +12,8 @@
     <string name = "schedule">Расписание</string>
     <string name = "review">Отзывы</string>
     <string name = "settings">Настройки</string>
+    <!--  MainFlow Schedule -->
+    <string name = "changes">Изменения</string>
 
     <!--  MainFlow Reviews -->
     <string name = "eetk_review">ЕЭТК Отзывы</string>

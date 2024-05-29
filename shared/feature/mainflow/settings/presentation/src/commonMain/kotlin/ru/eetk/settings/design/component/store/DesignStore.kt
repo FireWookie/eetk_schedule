@@ -34,7 +34,7 @@ interface DesignStore : Store<DesignStore.Intent, DesignStore.State, Nothing> {
 
     ) {
         companion object {
-            val THEME_LIST = listOf(
+            private val THEME_LIST = listOf(
                 Pair(Theme.System, EetkRes.strings.system_theme),
                 Pair(Theme.Light, EetkRes.strings.dark_off_theme),
                 Pair(Theme.Dark, EetkRes.strings.dark_on_theme)
