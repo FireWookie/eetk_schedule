@@ -1,52 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
-    <string name="cyclone">Cyclone</string>
-    <string name="open_github">Open github</string>
-    <string name="run">Run</string>
-    <string name="stop">Stop</string>
-    <string name="theme">Theme</string>
+    <!--  LaunchScreen Resources  -->
+    <string name = "select_branch">Выберите филиал</string>
+    <string name = "select_course">Выберите курс</string>
+    <string name = "course">Курс</string>
+    <string name = "btn_continue">продолжить</string>
+    <string name = "branch_eto">ЭТО\n(ул. Декабристов 58 и ул.Ясная 1/5)</string>
+    <string name = "branch_mto">МТО (пр.Космонавтов 50)</string>
 
-    <string name="select_branch">Выберите филиал</string>
-    <string name="select_course">Выберите курс</string>
-    <string name="course">Курс</string>
-    <string name="btn_continue">продолжить</string>
-    <string name="branch_eto">ЭТО\n(ул. Декабристов 58 и ул.Ясная 1/5)</string>
-    <string name="branch_mto">МТО (пр.Космонавтов 50)</string>
+    <!--  MainFlow Tab Titles  -->
+    <string name = "schedule">Расписание</string>
+    <string name = "review">Отзывы</string>
+    <string name = "settings">Настройки</string>
+    <!--  MainFlow Schedule -->
+    <string name = "changes">Изменения</string>
 
-    <string name="notification">Уведомления</string>
-    <string name="design">Оформление</string>
-    <string name="settings_profile">Профиль</string>
-    <string name="about_app">О приложении</string>
+    <!--  MainFlow Reviews -->
+    <string name = "eetk_review">ЕЭТК Отзывы</string>
+    <string name = "auth_need">Чтобы продолжить необходимо войти в аккаунт</string>
+    <string name = "subject">Дисциплина</string>
+    <string name = "work_years">Стаж работы</string>
+    <string name = "auth">Авторизоваться</string>
 
-    <string name="eetk_review">ЕЭТК Отзывы</string>
-    <string name="auth_need">Чтобы продолжить необходимо войти в аккаунт</string>
-    <string name="subject">Дисциплина</string>
-    <string name="work_years">Стаж работы</string>
-    <string name="auth">Авторизоваться</string>
+    <!--  MainFlow Tab Settings Notifications  -->
+    <string name = "notification_by_schedule">Уведомления о расписании</string>
+    <string name = "notification_by_changes">Уведомления об изменениях</string>
 
-    <string name="notification_by_schedule">Уведомления о расписании</string>
-    <string name="notification_by_changes">Уведомления об изменениях</string>
+    <!--  MainFlow Tab Settings Design  -->
+    <string name = "dark_theme">Ночная тема</string>
+    <string name = "system_theme">Системная</string>
+    <string name = "dark_off_theme">Светлая</string>
+    <string name = "dark_on_theme">Темная</string>
+    <string name = "dynamic_colors">Динамические цвета</string>
 
-    <string name="dark_theme">Ночная тема</string>
-    <string name="system_theme">Системная</string>
-    <string name="dark_off_theme">Светлая</string>
-    <string name="dark_on_theme">Темная</string>
-    <string name="dynamic_colors">Динамические цвета</string>
+    <!--  MainFlow Tab Settings Profile Titles -->
+    <string name = "notification">Уведомления</string>
+    <string name = "design">Оформление</string>
+    <string name = "settings_profile">Профиль</string>
+    <string name = "about_app">О приложении</string>
 
-    <string name="change_photo">Изменить Фото</string>
-    <string name="username">Никнейм</string>9
-    <string name="mail">Почта</string>
-    <string name="branch">Филиал</string>
-    <string name="change_password">Изменить пароль</string>
-    <string name="exit">Выйти</string>
-    <string name="next">далее</string>
-    <string name="apply">применить</string>
+    <!--  MainFlow Tab Settings Profile  -->
+    <string name = "change_photo">Изменить Фото</string>
+    <string name = "username">Никнейм</string>9
+    <string name = "mail">Почта</string>
+    <string name = "branch">Филиал</string>
+    <string name = "change_password">Изменить пароль</string>
+    <string name = "exit">Выйти</string>
+    <string name = "next">далее</string>
+    <string name = "apply">применить</string>
 
-    <string name="alert_change_username">Введите новый никнейм на английском языке</string>
-    <string name="alert_change_mail">На старую почту будет прислан код подтверждения</string>
-    <string name="alert_change_mail_code">Введите код, \nприсланный на почту</string>
+    <string name = "alert_change_username">Введите новый никнейм на английском языке</string>
+    <string name = "alert_change_mail">На старую почту будет прислан код подтверждения</string>
+    <string name = "alert_change_mail_code">Введите код, \nприсланный на почту</string>
 
-    <string name="schedule">Расписание</string>
-    <string name="review">Отзывы</string>
-    <string name="settings">Настройки</string>
+    <!--  MainFlow Tab Settings About App  -->
+    <string name = "about_app_support_dev">Поддержать разработчиков</string>
+    <string name = "about_app_support_tinkoff">Тинькофф 0000 0000 0000 0000</string>
+    <string name = "about_app_support_sberbank">Сбербанк 0000 0000 0000 0000</string>
+    <string name = "about_app_support">Нашли ошибку?</string>
+    <string name = "about_app_support_telegram">Telegram @someTGChannel</string>
+    <string name = "app_version">Версия 1.0.0</string>
+
 </resources>

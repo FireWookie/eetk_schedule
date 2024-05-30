@@ -1,8 +1,6 @@
 package ru.eetk.settings.menu.ui
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Notifications
@@ -10,12 +8,10 @@ import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.compose.stringResource
 import ru.eetk.components.cards.EETKSettingCard
-import ru.eetk.components.layout.CenteredColumn
 import ru.eetk.components.layout.EETKColumn
 import ru.eetk.components.layout.TitleAppBar
 import ru.eetk.resources.EetkRes
@@ -60,7 +56,7 @@ private fun SettingsMenuContent(
         EETKSettingCard(
             text = stringResource(EetkRes.strings.about_app),
             icon = icons.Info,
-            onClick = {}
+            onClick = component::onAboutAppClick
         )
     }
 }

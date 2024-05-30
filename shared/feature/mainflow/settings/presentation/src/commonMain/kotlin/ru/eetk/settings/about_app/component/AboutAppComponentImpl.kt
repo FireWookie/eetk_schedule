@@ -22,4 +22,6 @@ internal class AboutAppComponentImpl(
     val backClick: () -> Unit
 ): AboutAppComponent, BaseComponent(componentContext = componentContext) {
     override fun onBackClicked() = backClick.invoke()
+
+    override fun onTGClicked() {}
 }

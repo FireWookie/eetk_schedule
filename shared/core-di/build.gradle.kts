@@ -23,6 +23,8 @@ kotlin {
             implementation(projects.shared.libraries.flow)
             implementation(projects.shared.feature.launch.presentation)
             implementation(projects.shared.feature.mainflow.settings.presentation)
+            implementation(projects.shared.feature.mainflow.schedule.presentation)
+
             implementation(libs.mvikotlin)
             implementation(libs.mvikotlin.main)
         }

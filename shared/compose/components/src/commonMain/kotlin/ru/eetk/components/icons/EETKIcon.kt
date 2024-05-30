@@ -1,29 +1,44 @@
 package ru.eetk.components.icons
 
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 
-private val Height = 120.dp
-private val Width = 140.dp
+private val Size = 140.dp
 
 @Composable
 fun EETKIcon(
     icon: Painter
 ) {
-    Icon(
-        painter = icon,
-        tint = MaterialTheme.colorScheme.primary,
-        contentDescription = null,
+    val shape = MaterialTheme.shapes.extraLarge
+    Box(
         modifier = Modifier
-            .height(Height)
-            .width(Width)
-    )
+            .size(Size)
+            .clip(shape = shape)
+            .border(1.dp, color = MaterialTheme.colorScheme.outline, shape = shape),
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = icon,
+            contentDescription = null,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .offset(x = 5.dp)
+                .padding(10.dp)
+                .fillMaxSize()
+        )
+    }
+
 }
