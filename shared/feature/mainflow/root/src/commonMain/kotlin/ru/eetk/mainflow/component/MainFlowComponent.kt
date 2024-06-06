@@ -7,7 +7,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import models.SelectedTab
 import ru.eetk.review.root.component.ReviewRootComponent
-import ru.eetk.schedule.component.ScheduleComponent
+import ru.eetk.schedule.root.component.ScheduleRootComponent
 import ru.eetk.settings.root.component.SettingsRootComponent
 
 interface MainFlowComponent {
@@ -20,7 +20,7 @@ interface MainFlowComponent {
     val eventFlow: MutableSharedFlow<SelectedTab>
 
     sealed interface MainTabs {
-        class Schedule(val component: ScheduleComponent): MainTabs
+        class Schedule(val component: ScheduleRootComponent): MainTabs
         class Review(val component: ReviewRootComponent): MainTabs
         class Settings(val component: SettingsRootComponent): MainTabs
     }

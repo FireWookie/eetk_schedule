@@ -21,7 +21,7 @@ import ru.eetk.components.layout.NavigationBarItem
 import ru.eetk.mainflow.component.MainFlowComponent
 import ru.eetk.mainflow.component.utils.Screen
 import ru.eetk.review.root.screen.ReviewRootScreen
-import ru.eetk.schedule.screen.ScheduleScreen
+import ru.eetk.schedule.root.ui.ScheduleRootScreen
 import ru.eetk.settings.root.ui.SettingsRootScreen
 
 @OptIn(ExperimentalDecomposeApi::class)
@@ -47,7 +47,7 @@ internal fun MainFlowContent(pages: ChildPages<*, MainFlowComponent.MainTabs>, p
     ) {
         when (val page = pages.items[pages.selectedIndex].instance) {
             is MainFlowComponent.MainTabs.Review -> ReviewRootScreen(page.component)
-            is MainFlowComponent.MainTabs.Schedule -> ScheduleScreen(page.component)
+            is MainFlowComponent.MainTabs.Schedule -> ScheduleRootScreen(page.component)
             is MainFlowComponent.MainTabs.Settings -> SettingsRootScreen(page.component)
             null -> {}
         }

@@ -48,7 +48,7 @@ private fun NotificationScreenContent(
     val state by component.state.collectAsState()
 
     EETKColumn (
-        insetPadding = insetPadding
+        topAppBarPadding = insetPadding
     ) {
         EETKMenuSwitch(
             text = stringResource(EetkRes.strings.notification_by_schedule),

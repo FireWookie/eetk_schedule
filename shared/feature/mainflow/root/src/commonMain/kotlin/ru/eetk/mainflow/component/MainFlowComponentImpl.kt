@@ -20,7 +20,7 @@ import ru.eetk.libraries.flow.FlowConstants
 import ru.eetk.mainflow.component.utils.Screen
 import ru.eetk.mainflow.component.utils.Screen.*
 import ru.eetk.review.root.component.buildReviewRootComponent
-import ru.eetk.schedule.component.buildScheduleComponent
+import ru.eetk.schedule.root.component.buildScheduleRootComponent
 import ru.eetk.settings.root.component.buildSettingsRootComponent
 import ru.eetk.theme.util.BaseComponent
 
@@ -90,7 +90,7 @@ internal class MainFlowComponentImpl(
     ): MainFlowComponent.MainTabs {
         return when (tabs) {
             MainTabNavigation.Schedule -> MainFlowComponent.MainTabs.Schedule(
-                buildScheduleComponent(componentContext = componentContext)
+                buildScheduleRootComponent(componentContext = componentContext)
             )
 
             MainTabNavigation.Review -> MainFlowComponent.MainTabs.Review(
