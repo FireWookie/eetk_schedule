@@ -17,9 +17,19 @@ kotlin {
 
     sourceSets {
         commonDependencies {
+            implementation(projects.shared.compose.animation)
+            implementation(projects.shared.compose.components)
             implementation(projects.shared.compose.resources)
             implementation(projects.shared.compose.theme)
-            implementation(projects.shared.compose.components)
+
+            implementation(libs.mvikotlin.extensions)
+            implementation(libs.mvikotlin)
+
+            implementation(libs.koin.core)
+            implementation(projects.shared.libraries.datastore)
+            implementation(projects.shared.persistent)
+            implementation(libs.decompose)
+            implementation(libs.decompose.compose)
         }
     }
 }

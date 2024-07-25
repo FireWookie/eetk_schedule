@@ -53,7 +53,7 @@ private fun AboutAppScreenComponent(
     insetPadding: Dp,
 ) {
     EETKColumn(
-        insetPadding = insetPadding,
+        topAppBarPadding = insetPadding,
         verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .padding(bottom = 16.dp)

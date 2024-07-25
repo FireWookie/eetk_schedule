@@ -9,8 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-private val tonalElevation = 0.dp
-
 @Composable
 fun NavigationBar(
     modifier: Modifier = Modifier,
@@ -36,32 +34,6 @@ fun RowScope.NavigationBarItem(
         onClick = onClick,
         icon = icon,
         label = label,
-        enabled = enabled
-    )
-}
-
-@Composable
-fun NavigationRailItem(
-    selected: Boolean,
-    onClick: () -> Unit,
-    icon: @Composable () -> Unit,
-    enabled: Boolean = true
-) {
-    val containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(tonalElevation)
-
-    androidx.compose.material3.NavigationRailItem(
-        colors = NavigationRailItemDefaults.colors(
-            unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                alpha = 0.45f
-            ),
-            unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                alpha = 0.45f
-            ),
-            indicatorColor = containerColor,
-        ),
-        selected = selected,
-        onClick = onClick,
-        icon = icon,
         enabled = enabled
     )
 }

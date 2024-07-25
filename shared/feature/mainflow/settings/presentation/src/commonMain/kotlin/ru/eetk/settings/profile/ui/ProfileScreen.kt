@@ -60,7 +60,7 @@ fun ProfileScreenContent(
     var showDDM1 by remember { mutableStateOf(false) }
     var showDDM2 by remember { mutableStateOf(false) }
     EETKColumn(
-        insetPadding = insetPadding,
+        topAppBarPadding = insetPadding,
         verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.padding(bottom = 16.dp)
     ) {

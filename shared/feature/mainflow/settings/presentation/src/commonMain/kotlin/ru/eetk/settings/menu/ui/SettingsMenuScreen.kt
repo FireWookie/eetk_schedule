@@ -35,7 +35,7 @@ private fun SettingsMenuContent(
 ) {
     val icons = Icons.Outlined
     EETKColumn(
-        insetPadding = insetPadding,
+        topAppBarPadding = insetPadding,
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
         EETKSettingCard(

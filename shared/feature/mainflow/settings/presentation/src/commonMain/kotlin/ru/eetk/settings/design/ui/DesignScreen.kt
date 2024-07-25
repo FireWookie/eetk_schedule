@@ -38,7 +38,7 @@ fun DesignScreenContent(
 ) {
     val state by component.stateFlow.collectAsState()
     EETKColumn (
-        insetPadding = insetPadding
+        topAppBarPadding = insetPadding
     ) {
         EETKMenuSwitch(
             text = stringResource(EetkRes.strings.dynamic_colors),

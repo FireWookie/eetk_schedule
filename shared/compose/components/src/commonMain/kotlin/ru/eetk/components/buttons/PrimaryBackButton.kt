@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun PrimaryBackButton(
     icon: ImageVector = Icons.AutoMirrored.Default.ArrowBack,
+    iconTint: Color? = null,
     showBackground: Boolean = true,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -24,7 +25,11 @@ fun PrimaryBackButton(
         onClick = onClick,
         colors = IconButtonDefaults.iconButtonColors(
             containerColor = if(showBackground) MaterialTheme.colorScheme.primary else Color.Unspecified,
-            contentColor = if(showBackground) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface
+            contentColor = when {
+                showBackground -> MaterialTheme.colorScheme.onPrimary
+                iconTint != null -> iconTint
+                else -> MaterialTheme.colorScheme.onSurface
+            }
         ),
         content = {
             Icon(

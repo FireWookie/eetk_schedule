@@ -15,19 +15,29 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun EETKColumn(
     modifier: Modifier = Modifier,
-    insetPadding: Dp,
+    topAppBarPadding: Dp = 0.dp,
+    isFillMaxSize: Boolean = true,
+    isHorizontalPadding: Boolean = true,
+    isTopPadding: Boolean = true,
+    horizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
-    content:  @Composable (ColumnScope.() -> Unit)
+    content: @Composable (ColumnScope.() -> Unit),
 ) {
+    val mod: Modifier = if (isFillMaxSize) {
+        Modifier.fillMaxSize()
+    } else {
+        Modifier
+    }
+    val paddingModifier = mod
+        .padding(top = if (isTopPadding) topAppBarPadding + 16.dp else topAppBarPadding)
+        .padding(horizontal = if (isHorizontalPadding) 16.dp else 0.dp)
+
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(top = insetPadding)
-            .padding(top = 16.dp)
-            .padding(horizontal = 16.dp)
+            .then(paddingModifier)
             .then(modifier),
         verticalArrangement = verticalArrangement,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = horizontalAlignment,
         content = content
     )
 }
